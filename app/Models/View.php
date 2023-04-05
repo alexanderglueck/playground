@@ -31,12 +31,4 @@ class View extends Model
             ->where('field_view.view_id', '=', $viewId)
             ->get();
     }
-
-    public static function getCustomTable(Field $field): string
-    {
-        return match ($field->view_type) {
-            ViewType::CUSTOMER->value => 'custom_customer',
-            default => throw new \Exception('Invalid type')
-        };
-    }
 }
