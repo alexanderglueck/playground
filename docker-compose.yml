@@ -1,0 +1,31 @@
+version: '3.7'
+services:
+    web:
+        image: nginx:latest
+        ports:
+            - "8080:80"
+        volumes:
+            - ./:/app
+            - .docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+        depends_on:
+            - app
+
+    app:
+        build:
+            context: .
+            dockerfile: .docker/Dockerfile
+            target: development
+        depends_on:
+            - mysql
+        volumes:
+            - ./:/app
+
+    mysql:
+        image: mysql:8
+        ports:
+            - "3306:3306"
+        environment:
+            - MYSQL_ROOT_PASSWORD=secret
+            - MYSQL_DATABASE=app
+        volumes:
+            - ./storage/tmp/db:/var/lib/mysql:cached
