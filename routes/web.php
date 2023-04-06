@@ -18,4 +18,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/contacts', [ContactController::class, 'index']);
 Route::get('/contacts/{contact}', [ContactController::class, 'show']);

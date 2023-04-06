@@ -9,8 +9,6 @@ interface CustomFielded
 {
     public function getViewType(): ViewType;
 
-    public function getViewId(): ?int;
-
     public function fieldValue(Field $field);
 
     public function getCustomFieldClass(): string;

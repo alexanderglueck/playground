@@ -5,6 +5,7 @@ namespace App\Support;
 use App\Models\Field;
 use App\Models\View;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 trait HasCustomFields
@@ -16,20 +17,25 @@ trait HasCustomFields
         return View::fields($this);
     }
 
-    public function getViewId(): ?int
-    {
-        return $this->view_id;
-    }
-
     public function fieldValue(Field $field)
     {
-        if (!$field->isCustomField()) {
+        if ( ! $field->isCustomField()) {
             return $this->{$field->column};
         }
 
         $this->loadMissing('customFields');
 
         return $this->customFields->{$field->column};
+    }
+
+    public function view(): BelongsTo
+    {
+        return $this->belongsTo(View::class);
+    }
+
+    public function getViewIdAttribute($value): int
+    {
+        return $value ?? View::getDefaultViewId($this->getViewType());
     }
 
     public function customFields(): HasOne

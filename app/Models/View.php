@@ -12,13 +12,16 @@ class View extends Model
 {
     use HasFactory;
 
+    private static array $memoizedDefaultViewIds = [];
+    private static array $memoizedFields = [];
+
     protected $casts = [
         'view_type' => ViewType::class
     ];
 
     public static function getDefaultViewId(ViewType $viewType): int
     {
-        return View::query()
+        return self::$memoizedDefaultViewIds[$viewType->value] ??= View::query()
             ->where('view_type', $viewType)
             ->where('is_default', '=', true)
             ->first()
@@ -27,12 +30,10 @@ class View extends Model
 
     public static function fields(CustomFielded $customFielded): Collection
     {
-        $viewId = $customFielded->getViewId() ?? View::getDefaultViewId($customFielded->getViewType());
-
-        return Field::query()
+        return self::$memoizedDefaultViewIds[$customFielded->view_id] ??= Field::query()
             ->select('fields.*')
             ->join('field_view', 'field_view.field_id', '=', 'fields.id')
-            ->where('field_view.view_id', '=', $viewId)
+            ->where('field_view.view_id', '=', $customFielded->view_id)
             ->get();
     }
 }
