@@ -5,6 +5,7 @@ namespace App\Support;
 use App\Models\Field;
 use App\Models\View;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 trait HasCustomFields
 {
@@ -22,11 +23,17 @@ trait HasCustomFields
 
     public function fieldValue(Field $field)
     {
-        return $this->{$field->column};
+        if (!$field->isCustomField()) {
+            return $this->{$field->column};
+        }
+
+        $this->loadMissing('customFields');
+
+        return $this->customFields->{$field->column};
     }
 
-    protected static function booted(): void
+    public function customFields(): HasOne
     {
-        static::addGlobalScope(new CustomFieldScope);
+        return $this->hasOne($this->getCustomFieldClass(), self::$customTableKey);
     }
 }

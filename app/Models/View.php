@@ -12,10 +12,14 @@ class View extends Model
 {
     use HasFactory;
 
+    protected $casts = [
+        'view_type' => ViewType::class
+    ];
+
     public static function getDefaultViewId(ViewType $viewType): int
     {
         return View::query()
-            ->where('view_type', $viewType->value)
+            ->where('view_type', $viewType)
             ->where('is_default', '=', true)
             ->first()
             ->id;

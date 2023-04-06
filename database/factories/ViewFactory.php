@@ -14,7 +14,7 @@ class ViewFactory extends Factory
     {
         return [
             'name' => $this->faker->name,
-            'view_type' => ViewType::CUSTOMER->value,
+            'view_type' => ViewType::CUSTOMER,
             'is_default' => false
         ];
     }
