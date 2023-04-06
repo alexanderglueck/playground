@@ -3,25 +3,17 @@
 namespace App\Http\Controllers;
 
 use App\Models\Contact;
-use App\Models\Field;
+use Illuminate\Database\Eloquent\Collection;
 
 class ContactController
 {
-    public function index()
+    public function index(): Collection
     {
-        $contacts = Contact::with(['view', 'customFields'])->get();
-        //return $contacts;
-        return $contacts->map(function (Contact $contact) {
-            return $contact->fields();
-        });
+        return Contact::withFields()->get();
     }
 
     public function show(Contact $contact)
     {
-//        return $contact->fields();
-        return $contact->fields()->map(function (Field $field) use ($contact) {
-//            return $field->column;
-            return $contact->fieldValue($field);
-        });
+        return $contact->fields();
     }
 }

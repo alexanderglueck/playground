@@ -7,7 +7,7 @@ use Illuminate\Support\Str;
 
 class CustomFieldModel extends Model
 {
-    public function getTable()
+    public function getTable(): string
     {
         return Str::snake(class_basename($this));
     }
