@@ -12,8 +12,6 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 
 trait HasCustomFields
 {
-    public static string $customTableKey = 'entity_id';
-
     public function fieldValue(Field $field)
     {
         if ( ! $field->isCustomField()) {
@@ -40,7 +38,7 @@ trait HasCustomFields
 
     public function customFields(): HasOne
     {
-        return $this->hasOne($this->getCustomFieldClass(), self::$customTableKey);
+        return $this->hasOne($this->getCustomFieldClass(), CustomFieldModel::$customTableKey);
     }
 
     public function scopeWithFields(Builder $builder): void
