@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Support\CustomCustomer;
+use App\Support\CustomContact;
 use App\Support\CustomFielded;
 use App\Support\HasCustomFields;
 use App\Support\ViewType;
@@ -20,6 +20,6 @@ class Contact extends Model implements CustomFielded
 
     public function getCustomFieldClass(): string
     {
-        return CustomCustomer::class;
+        return CustomContact::class;
     }
 }
