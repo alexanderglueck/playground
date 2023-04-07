@@ -4,5 +4,5 @@ namespace App\Support;
 
 enum ViewType: string
 {
-    case CUSTOMER = 'customer';
+    case CONTACT = 'contact';
 }

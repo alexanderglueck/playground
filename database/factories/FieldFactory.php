@@ -14,7 +14,7 @@ class FieldFactory extends Factory
     {
         return [
             'name' => 'lastname',
-            'view_type' => ViewType::CUSTOMER,
+            'view_type' => ViewType::CONTACT,
             'field_type' => 'text',
             'is_custom' => false,
             'column' => 'name'

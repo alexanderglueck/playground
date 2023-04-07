@@ -15,7 +15,7 @@ class Contact extends Model implements CustomFielded
 
     public function getViewType(): ViewType
     {
-        return ViewType::CUSTOMER;
+        return ViewType::CONTACT;
     }
 
     public function getCustomFieldClass(): string

@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Support\ViewType;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -24,12 +25,12 @@ class DatabaseSeeder extends Seeder
             ->insert([
                 [
                     'name' => 'Customer',
-                    'view_type' => 'customer',
+                    'view_type' => ViewType::CONTACT->value,
                     'is_default' => false
                 ],
                 [
                     'name' => 'Company',
-                    'view_type' => 'customer',
+                    'view_type' => ViewType::CONTACT->value,
                     'is_default' => true
                 ],
             ]);
@@ -38,21 +39,21 @@ class DatabaseSeeder extends Seeder
             ->insert([
                 [
                     'name' => 'Name',
-                    'view_type' => 'customer',
+                    'view_type' => ViewType::CONTACT->value,
                     'field_type' => 'text',
                     'is_custom' => false,
                     'column' => 'name'
                 ],
                 [
                     'name' => 'Created at',
-                    'view_type' => 'customer',
+                    'view_type' => ViewType::CONTACT->value,
                     'field_type' => 'text',
                     'is_custom' => false,
                     'column' => 'created_at'
                 ],
                 [
                     'name' => 'Weight',
-                    'view_type' => 'customer',
+                    'view_type' => ViewType::CONTACT->value,
                     'field_type' => 'decimal',
                     'is_custom' => true,
                     'column' => '0_double_1'
