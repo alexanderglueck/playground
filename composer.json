@@ -1,9 +1,9 @@
 {
-    "name": "laravel/laravel",
+    "name": "alexanderglueck/playground",
     "type": "project",
-    "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
-    "license": "MIT",
+    "description": "A playground where I play with different packages and Docker setups.",
+    "keywords": ["framework", "laravel", "playground", "experiments", "docker"],
+    "license": "AGPL-3.0-or-later",
     "require": {
         "php": "^8.1",
         "guzzlehttp/guzzle": "^7.2",
