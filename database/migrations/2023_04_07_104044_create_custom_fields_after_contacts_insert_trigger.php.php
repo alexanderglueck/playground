@@ -15,8 +15,6 @@ return new class extends Migration
                 INSERT INTO `custom_contacts` (`entity_id`)
                 VALUES (NEW.id);
             END');
-
-        DB::unprepared('INSERT INTO `custom_contacts` (`entity_id`) SELECT `id` FROM `contacts`');
     }
 
     /**
