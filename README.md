@@ -22,3 +22,6 @@ A playground where I play with different packages and Docker setups.
 - [ ] Custom view handling
   - [x] Support custom views (e.g. Customer: name, address / Company: company name, address, vat id) 
   - [ ] Make it user manageable
+- [ ] Extract Docker components to a Composer package
+- [ ] Add invoice system
+  - Adhere to [invoice criteria](https://www.wko.at/service/steuern/Erfordernisse-einer-Rechnung.html)
