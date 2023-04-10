@@ -40,6 +40,16 @@ return [
             'queue' => 'default',
             'retry_after' => 90,
             'after_commit' => false,
+            'connection' => env('DB_CONNECTION', 'central'),
+        ],
+
+        'central' => [
+            'driver' => 'database',
+            'table' => 'jobs',
+            'queue' => 'default',
+            'retry_after' => 90,
+            'after_commit' => false,
+            'central' => true,
         ],
 
         'beanstalkd' => [

@@ -4,7 +4,7 @@ A playground where I play with different packages and Docker setups.
 
 ## Ideas
 
-- [ ] Look into [archtechx/tenancy](https://github.com/archtechx/tenancy) 
+- [x] Look into [archtechx/tenancy](https://github.com/archtechx/tenancy) 
   - Experiment with the subdomain approach (see Slack)
 - [x] Check out [multi-stage builds](https://docs.docker.com/build/building/multi-stage/) 
 - [ ] Optimize Dockerfile

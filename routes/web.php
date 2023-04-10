@@ -1,8 +1,5 @@
 <?php
 
-use App\Http\Controllers\ContactController;
-use App\Http\Controllers\InvoiceController;
-use App\Http\Controllers\InvoiceOptionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,20 +13,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Auth::loginUsingId(1);
-
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/contacts', [ContactController::class, 'index']);
-Route::get('/contacts/{contact}', [ContactController::class, 'show'])->name('contacts.show');
+Route::get('/impersonate', function () {
+    $redirectUrl = '/';
 
-Route::get('/invoices/options', [InvoiceOptionController::class, 'index'])->name('invoice_options.index');
-Route::get('/invoices/options/create', [InvoiceOptionController::class, 'create'])->name('invoice_options.create');
-Route::get('/invoices/options/{invoiceOption}', [InvoiceOptionController::class, 'show'])->name('invoice_options.show');
+    // Let's say we want to be redirected to the dashboard
+    // after we're logged in as the impersonated user.
+    $token = tenancy()->impersonate($tenant, $user->id, $redirectUrl);
+});
 
-Route::get('/invoices', [InvoiceController::class, 'index'])->name('invoices.index');
-Route::get('/invoices/create', [InvoiceController::class, 'store'])->name('invoices.create');
-Route::get('/invoices/credit/{invoice}', [InvoiceController::class, 'credit'])->name('invoices.credit');
-Route::get('/invoices/{invoice}', [InvoiceController::class, 'show'])->name('invoices.show');
+Route::get('/impersonate/{token}', \App\Http\Controllers\ImpersonationController::class);
+

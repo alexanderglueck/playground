@@ -13,7 +13,7 @@ return new class extends Migration {
         Schema::create('invoices', function (Blueprint $table) {
             $table->id();
             $table->string('number');
-            $table->foreignId('contact_id')->constrained()
+            $table->foreignId('contact_id')->nullable()->constrained()
                 ->nullOnDelete()
                 ->cascadeOnUpdate();
             $table->foreignId('invoice_option_id')->constrained()
