@@ -25,3 +25,4 @@ A playground where I play with different packages and Docker setups.
 - [ ] Extract Docker components to a Composer package
 - [ ] Add invoice system
   - Adhere to [invoice criteria](https://www.wko.at/service/steuern/Erfordernisse-einer-Rechnung.html)
+- [ ] Experiment with Events (simple/recurring/exceptions)
