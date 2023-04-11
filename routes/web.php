@@ -16,14 +16,3 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-
-Route::get('/impersonate', function () {
-    $redirectUrl = '/';
-
-    // Let's say we want to be redirected to the dashboard
-    // after we're logged in as the impersonated user.
-    $token = tenancy()->impersonate($tenant, $user->id, $redirectUrl);
-});
-
-Route::get('/impersonate/{token}', \App\Http\Controllers\ImpersonationController::class);
-
