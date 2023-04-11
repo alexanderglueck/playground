@@ -33,12 +33,14 @@ class EventController extends Controller
         $event->name = 'Event 1';
         $event->starts_at = '2023-04-10 14:40:00';
         $event->ends_at = '2023-04-10 16:40:00';
+        $event->timezone = 'Europe/Vienna';
         $event->save();
 
         $event = new Event();
         $event->name = 'Recurring event';
         $event->starts_at = '2023-04-11 14:40:00';
         $event->ends_at = '2023-04-11 16:40:00';
+        $event->timezone = 'Europe/Vienna';
         $event->rrule = 'FREQ=DAILY;UNTIL=20240410T200000;BYDAY=MO,TU';
         $event->save();
     }
