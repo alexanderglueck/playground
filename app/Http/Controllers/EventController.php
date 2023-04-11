@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Event;
-use App\Models\User;
 use App\Support\EventGenerator;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -25,8 +24,6 @@ class EventController extends Controller
 
     public function show()
     {
-        \Auth::loginUsingId(User::first()->id);
-
         return view('calendar.index');
     }
 
