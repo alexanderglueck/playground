@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\ImpersonationController;
 use App\Http\Controllers\ProfileController;
@@ -40,19 +41,7 @@ Route::middleware([
     PreventAccessFromCentralDomains::class,
 ])->group(function () {
 
-    Route::get('/', function () {
-        return 'This is your multi-tenant application. The id of the current tenant is ' . tenant('id');
-    });
-
-    Route::get('/calendar', [EventController::class, 'show']);
-    Route::get('/events/calendar', [EventController::class, 'index']);
-    Route::get('/events/store', [EventController::class, 'store']);
-
     Route::middleware(['auth', 'verified'])->group(function() {
-        Route::get('/dashboard', function () {
-            return view('dashboard');
-        })->name('dashboard');
-
         Route::get('/contacts', [ContactController::class, 'index']);
         Route::get('/contacts/{contact}', [ContactController::class, 'show'])->name('contacts.show');
 
@@ -65,6 +54,10 @@ Route::middleware([
         Route::get('/invoices/credit/{invoice}', [InvoiceController::class, 'credit'])->name('invoices.credit');
         Route::get('/invoices/{invoice}', [InvoiceController::class, 'show'])->name('invoices.show');
 
+        Route::get('/calendar', [EventController::class, 'show']);
+        Route::get('/events/calendar', [EventController::class, 'index']);
+        Route::get('/events/store', [EventController::class, 'store']);
+
         Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
         Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
         Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -75,6 +68,8 @@ Route::middleware([
     });
 
     Route::middleware('auth')->group(function () {
+        Route::get('/', DashboardController::class)->name('dashboard');
+
         Route::get('verify-email', EmailVerificationPromptController::class)->name('verification.notice');
         Route::get('verify-email/{id}/{hash}', VerifyEmailController::class)
             ->middleware(['signed', 'throttle:6,1'])
