@@ -3,8 +3,12 @@
 namespace App\Http\Controllers\Public;
 
 use App\Http\Controllers\Controller;
+use App\Mail\TenantLookupMail;
+use App\Support\TenantUserLookup;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
+// TODO Cleanup controller
 class WelcomeController extends Controller
 {
     public function show()
@@ -14,10 +18,15 @@ class WelcomeController extends Controller
 
     public function login(Request $request)
     {
-        $request->validateWithBag('login', [
+        $validated = $request->validateWithBag('login', [
             'email' => ['required', 'email']
         ]);
-        // TODO Implement e-mail / tenant lookup
+
+        $tenants = TenantUserLookup::get($validated['email']);
+
+        if ($tenants->isNotEmpty()) {
+            Mail::to($validated['email'])->send(new TenantLookupMail($tenants));
+        }
 
         return redirect()->route('welcome')->with('message', __('An e-mail has been sent to you!'));
     }
