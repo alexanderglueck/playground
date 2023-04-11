@@ -12,6 +12,7 @@
         "laravel/sanctum": "^3.2",
         "laravel/tinker": "^2.8",
         "simshaun/recurr": "^5.0",
+        "spatie/laravel-honeypot": "^4.3",
         "stancl/tenancy": "^3.7"
     },
     "require-dev": {
