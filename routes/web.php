@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\Public\WelcomeController;
 use Illuminate\Support\Facades\Route;
+use Spatie\Honeypot\ProtectAgainstSpam;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +15,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', [WelcomeController::class, 'show'])->name('welcome');
+
+Route::middleware(ProtectAgainstSpam::class)->group(function () {
+    Route::post('/login', [WelcomeController::class, 'login'])->name('lookup');
+
+    Route::post('/register', [WelcomeController::class, 'register'])->name('tenants.email');
 });
