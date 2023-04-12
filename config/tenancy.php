@@ -21,6 +21,8 @@ return [
         'localhost',
     ],
 
+    'central_domain' => 'localhost',
+
     /**
      * Tenancy bootstrappers are executed when tenancy is initialized.
      * Their responsibility is making Laravel features tenant-aware.

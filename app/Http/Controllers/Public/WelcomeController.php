@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Public;
 
 use App\Http\Controllers\Controller;
+use App\Mail\CompleteRegistrationMail;
 use App\Mail\TenantLookupMail;
 use App\Support\TenantUserLookup;
 use Illuminate\Http\Request;
@@ -28,16 +29,22 @@ class WelcomeController extends Controller
             Mail::to($validated['email'])->send(new TenantLookupMail($tenants));
         }
 
-        return redirect()->route('welcome')->with('message', __('An e-mail has been sent to you!'));
+        flash(__('An e-mail has been sent to you!'), 'success');
+
+        return redirect()->route('welcome');
     }
 
     public function register(Request $request)
     {
-        // TODO Send mail to verify email ownership
-        $request->validateWithBag('register', [
+        $validated = $request->validateWithBag('register', [
+            'workspace' => ['required', 'min:4', 'max:16', 'ascii', 'lowercase', 'unique:tenants,id'],
             'email' => ['required', 'email']
         ]);
 
-        return redirect()->route('welcome')->with('message', __('An e-mail has been sent to you!'));
+        Mail::to($validated['email'])->send(new CompleteRegistrationMail($validated['email'], $validated['workspace']));
+
+        flash(__('An e-mail has been sent to you!'), 'success');
+
+        return redirect()->route('welcome');
     }
 }
