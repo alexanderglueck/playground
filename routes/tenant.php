@@ -42,7 +42,7 @@ Route::middleware([
 ])->group(function () {
 
     Route::middleware(['auth', 'verified'])->group(function() {
-        Route::get('/contacts', [ContactController::class, 'index']);
+        Route::get('/contacts', [ContactController::class, 'index'])->name('contacts.index');
         Route::get('/contacts/{contact}', [ContactController::class, 'show'])->name('contacts.show');
 
         Route::get('/invoices/options', [InvoiceOptionController::class, 'index'])->name('invoice_options.index');
@@ -54,7 +54,7 @@ Route::middleware([
         Route::get('/invoices/credit/{invoice}', [InvoiceController::class, 'credit'])->name('invoices.credit');
         Route::get('/invoices/{invoice}', [InvoiceController::class, 'show'])->name('invoices.show');
 
-        Route::get('/calendar', [EventController::class, 'show']);
+        Route::get('/calendar', [EventController::class, 'show'])->name('calendar.show');
         Route::get('/events/calendar', [EventController::class, 'index']);
         Route::get('/events/store', [EventController::class, 'store']);
 
