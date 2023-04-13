@@ -42,6 +42,7 @@ class AppServiceProvider extends ServiceProvider
         Relation::enforceMorphMap([
             'user' => \App\Models\User::class,
             'contact' => \App\Models\Contact::class,
+            'invoice' => \App\Models\Invoice::class,
         ]);
 
         // Log a warning if we spend more than a total of 2000ms querying.

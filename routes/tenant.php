@@ -6,6 +6,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\ImpersonationController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ShareableController;
 use Illuminate\Support\Facades\Route;
 use Stancl\Tenancy\Middleware\InitializeTenancyByDomain;
 use Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains;
@@ -92,5 +93,9 @@ Route::middleware([
         Route::post('forgot-password', [PasswordResetLinkController::class, 'store'])->name('password.email');
         Route::get('reset-password/{token}', [NewPasswordController::class, 'create'])->name('password.reset');
         Route::post('reset-password', [NewPasswordController::class, 'store'])->name('password.store');
+    });
+
+    Route::middleware('shared')->group(function() {
+        Route::get('/shared/{shareable_link}', [ShareableController::class, 'show'])->name('shared.show');
     });
 });

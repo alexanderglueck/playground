@@ -2,7 +2,10 @@
 
 namespace App\Providers;
 
+use App\Models\ShareableLink;
 use Illuminate\Cache\RateLimiting\Limit;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
@@ -36,6 +39,14 @@ class RouteServiceProvider extends ServiceProvider
                 Route::middleware('web')
                     ->domain($domain)
                     ->group(base_path('routes/web.php'));
+            }
+        });
+
+        Route::bind('shareable_link', function ($value) {
+            try {
+                return ShareableLink::query()->where('uuid', $value)->firstOrFail();
+            } catch (QueryException $e) {
+                throw new ModelNotFoundException($e->getMessage());
             }
         });
     }

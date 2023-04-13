@@ -4,7 +4,9 @@ namespace App\Models;
 
 use App\Actions\Invoice\CreditInvoiceAction;
 use App\Support\CanBeFlashed;
+use App\Support\CanBeShared;
 use App\Support\Flashable;
+use App\Support\Shareable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -12,9 +14,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
-class Invoice extends Model implements Flashable
+class Invoice extends Model implements Flashable, Shareable
 {
-    use HasFactory, CanBeFlashed;
+    use HasFactory, CanBeFlashed, CanBeShared;
 
     public function sumGross()
     {

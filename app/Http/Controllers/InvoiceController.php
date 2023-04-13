@@ -23,7 +23,8 @@ class InvoiceController extends Controller
         return [
             $invoice,
             $invoice->sumGross(),
-            $invoice->sum()
+            $invoice->sum(),
+            $invoice->share()
         ];
     }
 
@@ -39,6 +40,7 @@ class InvoiceController extends Controller
 
     public function credit(Invoice $invoice)
     {
+        // TODO Remove hardcoded invoice option id
         $credit = $invoice->credit(InvoiceOption::find(2));
 
         Flash::created($credit);
