@@ -19,9 +19,10 @@ return [
     'central_domains' => [
         '127.0.0.1',
         'localhost',
+        ...array_values(array_filter(explode(',', env('TENANCY_CENTRAL_DOMAINS', ''))))
     ],
 
-    'central_domain' => 'localhost',
+    'central_domain' => env('TENANCY_CENTRAL_DOMAIN', 'localhost'),
 
     /**
      * Tenancy bootstrappers are executed when tenancy is initialized.
