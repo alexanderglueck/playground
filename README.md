@@ -10,6 +10,7 @@ A playground where I play with different packages and Docker setups.
 - [ ] Optimize Dockerfile
   - [x] Investigate opcache
   - Improve readability and image size
+  - Provide production image (files bundled, container for web, container for queues, container for scheduler)
 - [ ] Research "correct" timezone handling
   - Store everything in UTC
   - Display in local timezone
@@ -26,3 +27,10 @@ A playground where I play with different packages and Docker setups.
 - [ ] Add invoice system
   - Adhere to [invoice criteria](https://www.wko.at/service/steuern/Erfordernisse-einer-Rechnung.html)
 - [ ] Experiment with Events (simple/recurring/exceptions)
+  - Add column for recurrence end date (to filter out recurring events from the past)
+- [ ] Sharing center
+  - A list where all shared resources are listed
+  - List includes the date it was shared, and a way to remove the share
+- [ ] Command pallet
+  - Search objects (contacts, contact groups, invoices)
+  - Search for menu entries (New Invoice, Settings)
