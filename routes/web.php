@@ -24,7 +24,7 @@ Route::middleware(ProtectAgainstSpam::class)->group(function () {
     Route::post('/register', [WelcomeController::class, 'register'])->name('tenants.email');
 });
 
-Route::middleware('signed')->group(function() {
+Route::middleware('signed')->group(function () {
     Route::get('/workspace/create/{workspace}/{email}', [WorkspaceController::class, 'create'])->name('workspace.create');
     Route::post('/workspace/create/{workspace}/{email}', [WorkspaceController::class, 'store']);
 });
