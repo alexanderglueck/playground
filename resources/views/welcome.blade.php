@@ -5,7 +5,7 @@
     <div class="col-sm-6">
         <div class="card mb-4">
             <div class="card-body">
-                <h5 class="card-title">Sign in</h5>
+                <h5 class="card-title">{{ __('Sign in') }}</h5>
                 <form method="post" action="{{ route('lookup') }}">
                     @csrf
                     @honeypot
@@ -20,7 +20,7 @@
                         @enderror
                     </div>
 
-                    <button type="submit" class="btn btn-secondary">Sign in</button>
+                    <button type="submit" class="btn btn-secondary">{{ __('Sign in') }}</button>
                 </form>
             </div>
         </div>
@@ -28,7 +28,7 @@
     <div class="col-sm-6">
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">Sign up</h5>
+                <h5 class="card-title">{{ __('Sign up') }}</h5>
                 <form method="post" action="{{ route('tenants.email') }}">
                     @csrf
                     @honeypot
@@ -54,7 +54,7 @@
                         @enderror
                     </div>
 
-                    <button type="submit" class="btn btn-primary">Sign up</button>
+                    <button type="submit" class="btn btn-primary">{{ __('Sign up') }}</button>
                 </form>
             </div>
         </div>

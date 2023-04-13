@@ -15,6 +15,22 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+
+                    <x-nav-link :href="route('contacts.index')" :active="request()->routeIs('contacts.index')">
+                        {{ __('Contacts') }}
+                    </x-nav-link>
+
+                    <x-nav-link :href="route('invoices.index')" :active="request()->routeIs('invoices.index')">
+                        {{ __('Invoices') }}
+                    </x-nav-link>
+
+                    <x-nav-link :href="route('invoice_options.index')" :active="request()->routeIs('invoice_options.index')">
+                        {{ __('Invoice Options') }}
+                    </x-nav-link>
+
+                    <x-nav-link :href="route('calendar.show')" :active="request()->routeIs('calendar.show')">
+                        {{ __('Calendar') }}
+                    </x-nav-link>
                 </div>
             </div>
 

@@ -27,6 +27,11 @@
                 </header>
             @endif
 
+            <div class="max-w-7xl">
+                @include('flash::message')
+            </div>
+
+
             <!-- Page Content -->
             <main>
                 {{ $slot }}

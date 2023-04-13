@@ -3,14 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Models\Contact;
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 
 class ContactController
 {
-    public function index(): Collection
+    public function index(): View
     {
-        return Contact::withFields()->visibleTo(Auth::user())->with('contactGroups')->get();
+        $contacts = Contact::withFields()->visibleTo(Auth::user())->with('contactGroups')->get();
+
+        return view('contacts.index', [
+            'contacts' => $contacts
+        ]);
     }
 
     public function show(Contact $contact)
