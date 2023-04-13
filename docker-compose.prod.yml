@@ -1,0 +1,45 @@
+version: '3.7'
+services:
+  web:
+    image: nginx:latest
+    ports:
+      - "127.0.0.1:8080:80"
+    volumes:
+      - ./:/app
+      - .docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - app
+    networks:
+      - web
+      - internal
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=web"
+      - "traefik.http.routers.web.rule=HostRegexp(`www.example.com`, `example.com`, `{subdomain:[a-z]+}.example.com`)"
+
+  app:
+    build:
+      context: .
+      dockerfile: .docker/Dockerfile
+      target: development
+    depends_on:
+      - mysql
+    networks:
+      - internal
+    volumes:
+      - ./:/app
+
+  mysql:
+    image: mysql:8
+    environment:
+      - MYSQL_ROOT_PASSWORD=secret
+      - MYSQL_DATABASE=app
+    networks:
+      - internal
+    volumes:
+      - ./storage/tmp/db:/var/lib/mysql:cached
+
+networks:
+  web:
+    external: true
+  internal:
