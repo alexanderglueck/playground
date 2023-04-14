@@ -45,6 +45,8 @@
     "Once your account is deleted, all of its resources and data will be permanently deleted. Please enter your password to confirm you would like to permanently delete your account."
     : "Mit dem Löschen des Kontos werden alle damit verbundenen Ressourcen permanent gelöscht. Bitte gib dein Passwort ein, um das Löschen deines Kontos zu bestätigen.",
     "Once your account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information that you wish to retain."
-        : "Mit dem Löschen des Kontos werden alle damit verbundenen Ressourcen permanent gelöscht. Vergewissere dich, dass du alle benötigten Daten, die du behalten möchtest, heruntergeladen hast, bevor du dein Konto löschst."
-
+        : "Mit dem Löschen des Kontos werden alle damit verbundenen Ressourcen permanent gelöscht. Vergewissere dich, dass du alle benötigten Daten, die du behalten möchtest, heruntergeladen hast, bevor du dein Konto löschst.",
+"Shared Resources": "Geteilte Ressourcen",
+    "View share": "Geteilte Ressource ansehen",
+    "Shared :time_ago": "Geteilt :time_ago"
 }

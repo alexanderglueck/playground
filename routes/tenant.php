@@ -63,6 +63,8 @@ Route::middleware([
         Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
         Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+        Route::get('/sharing-center', [ShareableController::class, 'index'])->name('shared.index');
+
         // TODO Add is-admin middleware or impersonation permission
         Route::get('/impersonate', [ImpersonationController::class, 'show']);
         Route::get('/impersonate/{token}', [ImpersonationController::class, 'store']);
