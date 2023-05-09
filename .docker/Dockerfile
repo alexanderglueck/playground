@@ -44,6 +44,12 @@ COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 WORKDIR /app
 
+# Setup cache directories
+RUN mkdir -p /composer/cache && \
+    chown -R ${HOST_USER_ID}:${HOST_GROUP_ID} /composer/cache && \
+    mkdir -p /.config/psysh && \
+    chown -R ${HOST_USER_ID}:${HOST_GROUP_ID} /.config/psysh
+
 COPY composer.json composer.lock ./
 
 RUN composer install --no-scripts --prefer-dist --no-dev --optimize-autoloader && \
