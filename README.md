@@ -23,14 +23,41 @@ A playground where I play with different packages and Docker setups.
 - [ ] Custom view handling
   - [x] Support custom views (e.g. Customer: name, address / Company: company name, address, vat id) 
   - [ ] Make it user manageable
+  - [x] Render custom views
 - [ ] Extract Docker components to a Composer package
 - [ ] Add invoice system
   - Adhere to [invoice criteria](https://www.wko.at/service/steuern/Erfordernisse-einer-Rechnung.html)
 - [ ] Experiment with Events (simple/recurring/exceptions)
   - Add column for recurrence end date (to filter out recurring events from the past)
 - [ ] Sharing center
-  - A list where all shared resources are listed
-  - List includes the date it was shared, and a way to remove the share
+  - [x] A list where all shared resources are listed
+  - [ ] List includes the date it was shared, and a way to remove the share
 - [ ] Command pallet
   - Search objects (contacts, contact groups, invoices)
   - Search for menu entries (New Invoice, Settings)
+- [ ] Features
+  - [ ] Queued contact export
+  - [ ] Queued contact import with preview form 
+  - [ ] Contact search
+  - [ ] Multi contact modification (from search)
+  - [ ] Modification history
+  - [ ] Geocoding on contacts
+  - [ ] Tasks
+    - [ ] Task deadline in calendar
+  - [ ] Comments
+  - [ ] See who is currently viewing a page (Websockets (soketi))
+  - [ ] User groups
+    - [ ] Permissions on user groups
+  - [ ] Notes (basic markdown support)
+  - [ ] Calendar sync-able to Google Calendar (ics export)
+  - [ ] Multiple calendar support (User can have multiple calendars)
+  - [ ] Calendars can be shared with other users
+  - [ ] Calendars can be shared publicly (should be visible in sharing center)
+  - [ ] Show contact birthday in calendar
+  - [x] Change calendar starts at and ends at to datetime
+  - [ ] User profile images
+- [ ] Widgets
+- [ ] Configurable webhook endpoints to send updates to other recipients (not set in stone)
+- [ ] PDF preview using pdf.js
+- [x] Invoice PDFs using [weasyprint](https://weasyprint.org/) (rudimentary support)
+- [ ] HTML to markdown conversion (for sanitization reasons)

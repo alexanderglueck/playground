@@ -44,7 +44,7 @@ Route::middleware([
     PreventAccessFromCentralDomains::class,
 ])->group(function () {
 
-    Route::middleware(['auth', 'verified'])->group(function() {
+    Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/contacts', [ContactController::class, 'index'])->name('contacts.index');
         Route::get('/contacts/{contact}', [ContactController::class, 'show'])->name('contacts.show');
 
@@ -102,7 +102,7 @@ Route::middleware([
         Route::post('reset-password', [NewPasswordController::class, 'store'])->name('password.store');
     });
 
-    Route::middleware('shared')->group(function() {
+    Route::middleware('shared')->group(function () {
         Route::get('/shared/{shareable_link}', [ShareableController::class, 'show'])->name('shared.show');
     });
 
