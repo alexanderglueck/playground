@@ -48,5 +48,22 @@
         : "Mit dem Löschen des Kontos werden alle damit verbundenen Ressourcen permanent gelöscht. Vergewissere dich, dass du alle benötigten Daten, die du behalten möchtest, heruntergeladen hast, bevor du dein Konto löschst.",
 "Shared Resources": "Geteilte Ressourcen",
     "View share": "Geteilte Ressource ansehen",
-    "Shared :time_ago": "Geteilt :time_ago"
+    "Shared :time_ago": "Geteilt :time_ago",
+    "fields": {
+        "name": "Name",
+        "firstname": "Vorname",
+        "company": "Firma",
+        "vat_id": "UID",
+        "date_of_birth": "Geburtsdatum",
+        "title": "Titel",
+        "title_after": "Titel (nachgestellt)",
+        "email": "E-Mail",
+        "phone": "Telefon",
+        "mobile_phone": "Mobil",
+        "fax": "Fax",
+        "street": "Straße",
+        "zip": "PLZ",
+        "city": "Ort",
+        "country": "Land"
+    }
 }

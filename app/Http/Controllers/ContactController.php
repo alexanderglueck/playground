@@ -19,6 +19,9 @@ class ContactController
 
     public function show(Contact $contact)
     {
-        return $contact->fields();
+//        return $contact->fields();
+        return view('contacts.show', [
+            'contact' => $contact
+        ]);
     }
 }

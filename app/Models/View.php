@@ -23,7 +23,8 @@ class View extends Model
         return $this->belongsToMany(Field::class, 'field_view')
             ->withPivot([
                 'row',
-                'column'
+                'column',
+                'text'
             ])
             ->withTimestamps();
     }

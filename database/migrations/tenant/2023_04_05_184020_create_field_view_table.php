@@ -15,6 +15,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('view_id');
             $table->foreignId('field_id');
+            $table->unsignedInteger('row');
+            $table->unsignedInteger('column');
+            $table->string('text')->nullable();
             $table->timestamps();
 
             $table->index('view_id');
