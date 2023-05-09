@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Models\Event;
 use App\Models\ShareableLink;
+use App\Support\EventGenerator;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Database\QueryException;
@@ -45,6 +47,22 @@ class RouteServiceProvider extends ServiceProvider
         Route::bind('shareable_link', function ($value) {
             try {
                 return ShareableLink::query()->where('uuid', $value)->firstOrFail();
+            } catch (QueryException $e) {
+                throw new ModelNotFoundException($e->getMessage());
+            }
+        });
+
+        Route::bind('event_instance', function ($value) {
+            try {
+                [$id, $date] = explode('_', $value, 2);
+
+                /** @var Event $event */
+                $event = Event::query()->where('id', '=', $id)->firstOrFail();
+                if (!$event->isRecurring()) {
+                    return $event;
+                }
+
+                return EventGenerator::getRecurringEventInstance($event, $date);
             } catch (QueryException $e) {
                 throw new ModelNotFoundException($e->getMessage());
             }

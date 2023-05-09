@@ -59,9 +59,10 @@ Route::middleware([
         Route::get('/invoices/{invoice}/pdf/inline', [InvoicePdfController::class, 'show'])->name('invoices.pdf.inline');
         Route::get('/invoices/{invoice}', [InvoiceController::class, 'show'])->name('invoices.show');
 
-        Route::get('/calendar', [EventController::class, 'show'])->name('calendar.show');
+        Route::get('/calendar', CalendarController::class)->name('calendar.show');
         Route::get('/events/calendar', [EventController::class, 'index']);
         Route::get('/events/store', [EventController::class, 'store']);
+        Route::get('/events/{event_instance}', [EventController::class, 'show'])->name('events.show');
 
         Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
         Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -104,4 +105,15 @@ Route::middleware([
     Route::middleware('shared')->group(function() {
         Route::get('/shared/{shareable_link}', [ShareableController::class, 'show'])->name('shared.show');
     });
+
+
+});
+
+Route::middleware([
+    'api',
+    InitializeTenancyByDomain::class,
+    PreventAccessFromCentralDomains::class,
+])->prefix('api')->group(function () {
+    Route::put('/events/{event_instance}', [EventController::class, 'update']);
+    Route::get('/events/{event_instance}', [EventController::class, 'update']);
 });

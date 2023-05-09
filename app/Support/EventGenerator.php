@@ -9,6 +9,7 @@ use DateTimeImmutable;
 use Exception;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\Log;
 use Recurr\Exception\InvalidRRule;
 use Recurr\Rule;
@@ -39,28 +40,6 @@ class EventGenerator
             foreach ($generatedEvents as $generatedEvent) {
                 $finalEvents[] = $generatedEvent;
             }
-        }
-
-        return $finalEvents;
-    }
-
-    public static function generate(Collection $events)
-    {
-        $finalEvents = [];
-
-        /** @var Event $event */
-        foreach ($events as $event) {
-            if ( ! $event->isRecurring()) {
-                $finalEvents[] = $event;
-                continue;
-            }
-
-            $generatedEvents = self::generateEvents($event);
-
-            foreach ($generatedEvents as $generatedEvent) {
-                $finalEvents[] = $generatedEvent;
-            }
-
         }
 
         return $finalEvents;
@@ -107,6 +86,7 @@ class EventGenerator
         $events = [];
         foreach ($transformer->transform($rule, $constraint) as $recurrence) {
             $generatedEvent = $event->replicate();
+            $generatedEvent->id = $event->id;
             $generatedEvent->starts_at = Carbon::createFromInterface($recurrence->getStart())->shiftTimezone($event->timezone)->setTimezone("UTC");
             $generatedEvent->ends_at = Carbon::createFromInterface($recurrence->getEnd())->shiftTimezone($event->timezone)->setTimezone("UTC");
 
@@ -132,5 +112,16 @@ class EventGenerator
                     ->where('starts_at', '<=', $endUtc);
             })
             ->get();
+    }
+
+    public static function getRecurringEventInstance(Event $event, string $startsAt): Event
+    {
+        $events = self::generateEvents($event, $startsAt, (int)$startsAt + 1);
+
+        if (isset($events[0])) {
+            return $events[0];
+        }
+
+        throw new ModelNotFoundException('Recurring event instance could not be found');
     }
 }

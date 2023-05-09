@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class ExcludedDate extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'date'
+    ];
 }
