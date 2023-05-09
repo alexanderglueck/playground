@@ -2,17 +2,6 @@
 
 declare(strict_types=1);
 
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\EventController;
-use App\Http\Controllers\ImpersonationController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\ShareableController;
-use Illuminate\Support\Facades\Route;
-use Stancl\Tenancy\Middleware\InitializeTenancyByDomain;
-use Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains;
-use App\Http\Controllers\ContactController;
-use App\Http\Controllers\InvoiceController;
-use App\Http\Controllers\InvoiceOptionController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\ConfirmablePasswordController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
@@ -22,6 +11,19 @@ use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
+use App\Http\Controllers\CalendarController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\EventController;
+use App\Http\Controllers\ImpersonationController;
+use App\Http\Controllers\InvoiceController;
+use App\Http\Controllers\InvoiceOptionController;
+use App\Http\Controllers\InvoicePdfController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ShareableController;
+use Illuminate\Support\Facades\Route;
+use Stancl\Tenancy\Middleware\InitializeTenancyByDomain;
+use Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,6 +55,8 @@ Route::middleware([
         Route::get('/invoices', [InvoiceController::class, 'index'])->name('invoices.index');
         Route::get('/invoices/create', [InvoiceController::class, 'store'])->name('invoices.create');
         Route::get('/invoices/credit/{invoice}', [InvoiceController::class, 'credit'])->name('invoices.credit');
+        Route::get('/invoices/{invoice}/pdf/download', [InvoicePdfController::class, 'store'])->name('invoices.pdf.download');
+        Route::get('/invoices/{invoice}/pdf/inline', [InvoicePdfController::class, 'show'])->name('invoices.pdf.inline');
         Route::get('/invoices/{invoice}', [InvoiceController::class, 'show'])->name('invoices.show');
 
         Route::get('/calendar', [EventController::class, 'show'])->name('calendar.show');

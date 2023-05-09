@@ -11,8 +11,10 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use WeasyPrint\Objects\Output;
 
 class Invoice extends Model implements Flashable, Shareable
 {
@@ -72,6 +74,17 @@ class Invoice extends Model implements Flashable, Shareable
         $invoiceOption->increment('last_number', $i - 1);
 
         return $number;
+    }
+
+    public function toPdf(): Output
+    {
+        $source = Blade::render('invoices.pdf', [
+            'invoice' => $this
+        ]);
+
+        $service = \WeasyPrint\Service::new(binary: '/python/venv/bin/weasyprint')->prepareSource($source);
+
+        return $service->build();
     }
 
     protected static function booted()

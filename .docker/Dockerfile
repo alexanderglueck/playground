@@ -13,6 +13,7 @@ ENV PHP_OPCACHE_MEMORY_CONSUMPTION="192"
 ENV PHP_OPCACHE_MAX_WASTED_PERCENTAGE="10"
 ENV HOST_USER_ID=$HOST_USER_ID
 ENV HOST_GROUP_ID=$HOST_GROUP_ID
+ENV TMPDIR /app/storage/cache
 
 # Configure timezone
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
@@ -22,7 +23,14 @@ ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/do
 
 # Install dependencies
 RUN apk add --no-cache \
-    unzip git curl
+    unzip git curl \
+    py3-pip gcc musl-dev python3-dev pango zlib-dev jpeg-dev openjpeg-dev g++ libffi-dev msttcorefonts-installer && \
+    python3 -m venv /python/venv && \
+    source /python/venv/bin/activate && \
+    pip install cffi html5lib cssselect2 tinycss2 pyphen fonttools Pillow weasyprint && \
+    update-ms-fonts &&\
+    fc-cache -f && \
+    rm -rf /var/cache/apk/* /tmp/* /root/.cache/pip
 
 # Install php extensions
 RUN chmod +x /usr/local/bin/install-php-extensions && \
