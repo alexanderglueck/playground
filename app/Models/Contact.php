@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Scopes\LimitContactsScope;
 use App\Support\AccessRight;
 use App\Support\CanBeFlashed;
 use App\Support\CustomContact;
@@ -19,6 +20,11 @@ use Illuminate\Database\Query\Builder as QueryBuilder;
 class Contact extends Model implements CustomFielded, Flashable
 {
     use HasFactory, HasCustomFields, CanBeFlashed;
+
+    protected static function booted(): void
+    {
+        Model::addGlobalScope(new LimitContactsScope());
+    }
 
     public function invoices(): HasMany
     {

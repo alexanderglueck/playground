@@ -31,6 +31,10 @@
                     <x-nav-link :href="route('calendar.show')" :active="request()->routeIs('calendar.show')">
                         {{ __('Calendar') }}
                     </x-nav-link>
+
+                    <x-nav-link :href="route('notebooks.index')" :active="request()->routeIs('notebooks.index')">
+                        {{ __('Notebooks') }}
+                    </x-nav-link>
                 </div>
             </div>
 

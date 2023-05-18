@@ -19,8 +19,11 @@ use App\Http\Controllers\ImpersonationController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\InvoiceOptionController;
 use App\Http\Controllers\InvoicePdfController;
+use App\Http\Controllers\NotebookController;
+use App\Http\Controllers\NoteController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ShareableController;
+use App\Http\Controllers\TagController;
 use Illuminate\Support\Facades\Route;
 use Stancl\Tenancy\Middleware\InitializeTenancyByDomain;
 use Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains;
@@ -69,6 +72,10 @@ Route::middleware([
         Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
         Route::get('/sharing-center', [ShareableController::class, 'index'])->name('shared.index');
+
+        Route::resource('notebooks', NotebookController::class);
+        Route::resource('notes', NoteController::class);
+        Route::resource('tags', TagController::class);
 
         // TODO Add is-admin middleware or impersonation permission
         Route::get('/impersonate', [ImpersonationController::class, 'show']);
