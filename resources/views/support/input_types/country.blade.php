@@ -6,3 +6,6 @@
         >{{(__('countries')[$country] ?? $country) }}</option>
     @endforeach
 </select>
+@error($name)
+    <span class="help-block"><strong>{{ $message }}</strong></span>
+@enderror
