@@ -48,7 +48,9 @@ A playground where I play with different packages and Docker setups.
   - [ ] See who is currently viewing a page (Websockets (soketi))
   - [ ] User groups
     - [ ] Permissions on user groups
-  - [ ] Notes (basic markdown support)
+  - [ ] Notes 
+  -   [x] Initial implementation
+  -   [ ] markdown support (CKEditor)
   - [ ] Calendar sync-able to Google Calendar (ics export)
   - [ ] Multiple calendar support (User can have multiple calendars)
   - [ ] Calendars can be shared with other users
