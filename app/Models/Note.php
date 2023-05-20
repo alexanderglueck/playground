@@ -3,12 +3,16 @@
 namespace App\Models;
 
 use App\Models\Scopes\LimitNotesScope;
+use App\Support\CanBeFlashed;
+use App\Support\Flashable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-class Note extends Model
+class Note extends Model implements Flashable
 {
+    use CanBeFlashed;
+
     protected $fillable = [
         'name',
         'content',

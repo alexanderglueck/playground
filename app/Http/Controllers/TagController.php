@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\TagRequest;
 use App\Models\Tag;
 use App\Services\TagService;
+use App\Support\Flash;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use RuntimeException;
@@ -36,10 +37,12 @@ class TagController extends Controller
         $this->authorize('create', Tag::class);
 
         try {
-            $this->tagService->createTag($request->user(), $request->toData());
+            $tag = $this->tagService->createTag($request->user(), $request->toData());
         } catch (RuntimeException $e) {
             return redirect()->back()->withInput()->withException($e);
         }
+
+        Flash::created($tag);
 
         return redirect()->route('tags.index');
     }
@@ -67,10 +70,12 @@ class TagController extends Controller
         $this->authorize('update', $tag);
 
         try {
-            $this->tagService->updateTag($tag, $request->toData());
+            $tag = $this->tagService->updateTag($tag, $request->toData());
         } catch (RuntimeException $e) {
             return redirect()->back()->withInput()->withException($e);
         }
+
+        Flash::updated($tag);
 
         return redirect()->route('tags.show', [$tag]);
     }

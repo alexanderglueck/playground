@@ -7,6 +7,7 @@ use App\Models\Note;
 use App\Services\NotebookService;
 use App\Services\NoteService;
 use App\Services\TagService;
+use App\Support\Flash;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -49,10 +50,12 @@ class NoteController extends Controller
         $this->authorize('create', Note::class);
 
         try {
-            $this->noteService->createNote($request->user(), $request->toData());
+            $note = $this->noteService->createNote($request->user(), $request->toData());
         } catch (RuntimeException $e) {
             return redirect()->back()->withInput()->withException($e);
         }
+
+        Flash::created($note);
 
         return redirect()->route('notes.index');
     }
@@ -84,10 +87,12 @@ class NoteController extends Controller
         $this->authorize('update', $note);
 
         try {
-            $this->noteService->updateNote($note, $request->toData());
+            $note = $this->noteService->updateNote($note, $request->toData());
         } catch (RuntimeException $e) {
             return redirect()->back()->withInput()->withException($e);
         }
+
+        Flash::updated($note);
 
         return redirect()->route('notes.show', [$note]);
     }

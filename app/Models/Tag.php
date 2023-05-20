@@ -3,11 +3,15 @@
 namespace App\Models;
 
 use App\Models\Scopes\LimitTagsScope;
+use App\Support\CanBeFlashed;
+use App\Support\Flashable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
-class Tag extends Model
+class Tag extends Model implements Flashable
 {
+    use CanBeFlashed;
+
     protected $fillable = [
         'name',
     ];

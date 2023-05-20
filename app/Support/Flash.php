@@ -4,9 +4,8 @@ namespace App\Support;
 
 class Flash
 {
-    public static function created(Flashable $flashable): void
+    private static function message(Flashable $flashable, string $message): void
     {
-        $message = __(':type was successfully created!');
         $replace = [
             'type' => $flashable->getFlashType(),
             'name' => e($flashable->getFlashName()),
@@ -18,5 +17,19 @@ class Flash
         }
 
         flash(__($message, $replace))->success();
+    }
+
+    public static function created(Flashable $flashable): void
+    {
+        $message = __(':type was successfully created!');
+
+        self::message($flashable, $message);
+    }
+
+    public static function updated(Flashable $flashable): void
+    {
+        $message = __(':type was successfully updated!');
+
+        self::message($flashable, $message);
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\NotebookRequest;
 use App\Models\Notebook;
 use App\Services\NotebookService;
+use App\Support\Flash;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use RuntimeException;
@@ -36,10 +37,12 @@ class NotebookController extends Controller
         $this->authorize('create', Notebook::class);
 
         try {
-            $this->notebookService->createNotebook($request->user(), $request->toData());
+            $notebook = $this->notebookService->createNotebook($request->user(), $request->toData());
         } catch (RuntimeException $e) {
             return redirect()->back()->withInput()->withException($e);
         }
+
+        Flash::created($notebook);
 
         return redirect()->route('notebooks.index');
     }
@@ -71,6 +74,8 @@ class NotebookController extends Controller
         } catch (RuntimeException $e) {
             return redirect()->back()->withInput()->withException($e);
         }
+
+        Flash::updated($notebook);
 
         return redirect()->route('notebooks.show', [$notebook]);
     }
