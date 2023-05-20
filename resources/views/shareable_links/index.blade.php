@@ -8,8 +8,15 @@
 
         <ul>
             @foreach($shareableLinks as $shareableLink)
-                <li><a href="{{ $shareableLink->url }}"
-                       title="{{ __('View share') }}">{{ $shareableLink->shareable->getFlashName() }} ({{ __('Shared :time_ago', ['time_ago' => $shareableLink->created_at->diffForHumans()]) }})</a></li>
+                <li>
+                    <a href="{{ $shareableLink->url }}"
+                       title="{{ __('View share') }}">{{ $shareableLink->shareable->getFlashName() }} ({{ __('Shared :time_ago', ['time_ago' => $shareableLink->created_at->diffForHumans()]) }})</a>
+                    <form action="{{ route('shared.destroy', $shareableLink) }}" method="post" class="inline">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit">Delete</button>
+                    </form>
+                </li>
             @endforeach
         </ul>
     </x-panel>

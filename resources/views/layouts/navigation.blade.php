@@ -35,6 +35,10 @@
                     <x-nav-link :href="route('notebooks.index')" :active="request()->routeIs('notebooks.index')">
                         {{ __('Notebooks') }}
                     </x-nav-link>
+
+                    <x-nav-link :href="route('shared.index')" :active="request()->routeIs('shared.index')">
+                        {{ __('Sharing Center') }}
+                    </x-nav-link>
                 </div>
             </div>
 

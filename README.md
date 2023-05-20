@@ -29,9 +29,9 @@ A playground where I play with different packages and Docker setups.
   - Adhere to [invoice criteria](https://www.wko.at/service/steuern/Erfordernisse-einer-Rechnung.html)
 - [ ] Experiment with Events (simple/recurring/exceptions)
   - Add column for recurrence end date (to filter out recurring events from the past)
-- [ ] Sharing center
+- [x] Sharing center
   - [x] A list where all shared resources are listed
-  - [ ] List includes the date it was shared, and a way to remove the share
+  - [x] List includes the date it was shared, and a way to remove the share
 - [ ] Command pallet
   - Search objects (contacts, contact groups, invoices)
   - Search for menu entries (New Invoice, Settings)

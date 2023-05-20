@@ -77,6 +77,8 @@ Route::middleware([
         Route::resource('notes', NoteController::class);
         Route::resource('tags', TagController::class);
 
+        Route::delete('/shared/{link}', [ShareableController::class, 'destroy'])->name('shared.destroy');
+
         // TODO Add is-admin middleware or impersonation permission
         Route::get('/impersonate', [ImpersonationController::class, 'show']);
         Route::get('/impersonate/{token}', [ImpersonationController::class, 'store']);
