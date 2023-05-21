@@ -9,7 +9,7 @@ class Country extends InputType
 {
     public function toHtmlElement(): HtmlString
     {
-        $countries = ["DE", "AT", "CH", "IT", "FR"];
+        $countries = \App\Models\Country::pluck('code');
 
         return new HtmlString(Blade::render('support.input_types.country', [
             'randomId' => $this->getRandomId(),
