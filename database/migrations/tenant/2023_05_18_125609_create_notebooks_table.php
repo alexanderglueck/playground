@@ -19,6 +19,7 @@ return new class extends Migration
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
             $table->boolean('is_favorite')->default(false);
+            $table->boolean('is_private')->default(false);
             $table->timestamps();
         });
     }

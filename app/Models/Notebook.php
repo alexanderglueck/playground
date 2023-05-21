@@ -15,7 +15,8 @@ class Notebook extends Model implements Flashable
 
     protected $fillable = [
         'name',
-        'is_favorite'
+        'is_favorite',
+        'is_private',
     ];
 
     protected static function booted(): void

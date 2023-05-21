@@ -20,6 +20,9 @@ class LimitNotebooksScope implements Scope
             return;
         }
 
-        $builder->where('user_id', '=', $user->id);
+        $builder->where(function (Builder $query) use ($user) {
+            $query->where('user_id', '=', $user->id)
+                ->where('is_private', '=', 1);
+        })->orWhere('is_private', '=', 0);
     }
 }

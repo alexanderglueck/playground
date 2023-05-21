@@ -39,6 +39,7 @@ class NoteController extends Controller
         $this->authorize('create', Note::class);
 
         return view('note.create', [
+            'note' => new Note,
             'notebookPreselect' => $request->get('notebook'),
             'notebooks' => $this->notebookService->getNotebooks(),
             'tags' => $this->tagService->getTags()

@@ -29,7 +29,9 @@ class NotebookController extends Controller
     {
         $this->authorize('create', Notebook::class);
 
-        return view('notebook.create');
+        return view('notebook.create', [
+            'notebook' => new Notebook
+        ]);
     }
 
     public function store(NotebookRequest $request): RedirectResponse

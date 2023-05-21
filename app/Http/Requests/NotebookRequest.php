@@ -15,7 +15,8 @@ class NotebookRequest extends FormRequest
     {
         return [
             'name' => ['required'],
-            'is_favorite' => ['nullable', 'integer']
+            'is_favorite' => ['nullable', 'integer'],
+            'is_private' => ['nullable', 'integer'],
         ];
     }
 
@@ -25,7 +26,8 @@ class NotebookRequest extends FormRequest
 
         return new NotebookData(
             name: $validated['name'],
-            isFavorite: isset($validated['is_favorite'])
+            isFavorite: isset($validated['is_favorite']),
+            isPrivate: isset($validated['is_private'])
         );
     }
 }
