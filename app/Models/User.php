@@ -5,8 +5,10 @@ namespace App\Models;
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Support\TenantUserLookup;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use InvalidArgumentException;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
@@ -51,5 +53,34 @@ class User extends Authenticatable
                 $user->email
             );
         });
+    }
+
+    public function hasPermissionTo(string $permissionName): bool
+    {
+        $permission = Permission::where('name', $permissionName)->first();
+
+        if ( ! $permission) {
+            throw new InvalidArgumentException('Permission does not exist: ' . $permissionName);
+        }
+
+        return $this->hasRole($permission->roles);
+    }
+
+    public function roles(): BelongsToMany
+    {
+        return $this->belongsToMany(Role::class);
+    }
+
+    public function assignRole(Role $role): Role
+    {
+        return $this->roles()->save($role);
+    }
+
+    public function hasRole($role): bool
+    {
+        if (is_string($role)) {
+            return $this->roles->contains('name', $role);
+        }
+        return ! ! $role->intersect($this->roles)->count();
     }
 }
