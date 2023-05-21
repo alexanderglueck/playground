@@ -5,7 +5,7 @@
     "keywords": ["framework", "laravel", "playground", "experiments", "docker"],
     "license": "AGPL-3.0-or-later",
     "require": {
-        "php": "^8.1",
+        "php": "^8.2",
         "guzzlehttp/guzzle": "^7.2",
         "laracasts/flash": "^3.2",
         "laravel/framework": "^10.0",
