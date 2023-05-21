@@ -1,3 +1,181 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/**
+ * @license Copyright (c) 2014-2023, CKSource Holding sp. z o.o. All rights reserved.
+ * This file is licensed under the terms of the MIT License (see LICENSE.md).
+ */
+
+:root {
+    --ck-sample-base-spacing: 2em;
+    --ck-sample-color-white: #fff;
+    --ck-sample-color-green: #279863;
+    --ck-sample-color-blue: #1a9aef;
+    --ck-sample-container-width: 1285px;
+    --ck-sample-sidebar-width: 350px;
+    --ck-sample-editor-min-height: 400px;
+    --ck-sample-editor-z-index: 10;
+}
+
+/* --------- EDITOR STYLES  ---------------------------------------------------------------------------------------- */
+
+.editor__editable,
+    /* Classic build. */
+main .ck-editor[role='application'] .ck.ck-content,
+    /* Decoupled document build. */
+.ck.editor__editable[role='textbox'],
+.ck.ck-editor__editable[role='textbox'],
+    /* Inline & Balloon build. */
+.ck.editor[role='textbox'] {
+    width: 100%;
+    background: #fff;
+    font-size: 1em;
+    line-height: 1.6em;
+    min-height: var(--ck-sample-editor-min-height);
+    padding: 1.5em 2em;
+}
+
+.ck.ck-editor__editable {
+    background: #fff;
+    border: 1px solid hsl(0, 0%, 70%);
+    width: 100%;
+}
+
+/* Because of sidebar `position: relative`, Edge is overriding the outline of a focused editor. */
+.ck.ck-editor__editable {
+    position: relative;
+    z-index: var(--ck-sample-editor-z-index);
+}
+
+.editor-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    position: relative;
+    width: 100%;
+    justify-content: center;
+}
+
+/* --------- DECOUPLED (DOCUMENT) BUILD. ---------------------------------------------*/
+body[data-editor='DecoupledDocumentEditor'] .document-editor__toolbar {
+    width: 100%;
+}
+
+body[data-editor='DecoupledDocumentEditor'] .collaboration-demo__editable,
+body[data-editor='DecoupledDocumentEditor'] .row-editor .editor {
+    /* A pixel is added for each of the border. */
+    width: calc(21cm + 2px);
+    min-height: calc(29.7cm + 2px);
+    /* To avoid having extra scrolls inside the editor container. */
+    height: fit-content;
+    padding: 2cm 1.2cm;
+    margin: 2.5rem;
+    border: 1px hsl( 0, 0%, 82.7% ) solid;
+    background-color: var(--ck-sample-color-white);
+    box-shadow: 0 0 5px hsla( 0, 0%, 0%, .1 );
+    box-sizing: border-box;
+}
+
+body[data-editor='DecoupledDocumentEditor'] .row-editor {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    overflow-y: auto;
+    background-color: #f2f2f2;
+    border: 1px solid hsl(0, 0%, 77%);
+    /* Limit the max-height of the editor to avoid scrolling from bottom to top to see the toolbar. */
+    max-height: 700px;
+}
+
+body[data-editor='DecoupledDocumentEditor'] .sidebar {
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+}
+
+/* --------- COMMENTS & TRACK CHANGES FEATURE ---------------------------------------------------------------------- */
+.sidebar {
+    padding: 0 15px;
+    position: relative;
+    min-width: var(--ck-sample-sidebar-width);
+    max-width: var(--ck-sample-sidebar-width);
+    font-size: 20px;
+    border: 1px solid hsl(0, 0%, 77%);
+    background: hsl(0, 0%, 98%);
+    border-left: 0;
+    overflow: hidden;
+    min-height: 100%;
+    flex-grow: 1;
+}
+
+/* Do not inherit styles related to the editable editor content. See line 25.*/
+.sidebar .ck-content[role='textbox'],
+.ck.ck-annotation-wrapper .ck-content[role='textbox'] {
+    min-height: unset;
+    width: unset;
+    padding: 0;
+    background: transparent;
+}
+
+.sidebar.narrow {
+    min-width: 60px;
+    flex-grow: 0;
+}
+
+.sidebar.hidden {
+    display: none !important;
+}
+
+#sidebar-display-toggle {
+    position: absolute;
+    z-index: 1;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    left: 15px;
+    top: 30px;
+    border: 0;
+    padding: 0;
+    color: hsl( 0, 0%, 50% );
+    transition: 250ms ease color;
+    background-color: transparent;
+}
+
+#sidebar-display-toggle:hover {
+    color: hsl( 0, 0%, 30% );
+    cursor: pointer;
+}
+
+#sidebar-display-toggle:focus,
+#sidebar-display-toggle:active {
+    outline: none;
+    border: 1px solid #a9d29d;
+}
+
+#sidebar-display-toggle svg {
+    fill: currentColor;
+}
+
+
+/* --------- PAGINATION FEATURE ------------------------------------------------------------------------------------ */
+
+/* Pagination view line must be stacked at least at the same level as the editor,
+   otherwise it will be hidden underneath. */
+.ck.ck-pagination-view-line {
+    z-index: var(--ck-sample-editor-z-index);
+}
+
+/* --------- DOCUMENT OUTLINE FEATURE ------------------------------------------------------------------------------ */
+
+.document-outline-container {
+    max-height: 80vh;
+    overflow-y: auto;
+    margin-bottom: 1em;
+}
+
+.document-outline-container .ck.ck-document-outline {
+    min-height: 100%;
+    border: 1px solid var(--ck-color-base-border);
+    background-color: hsl(0, 0%, 96%);
+}
