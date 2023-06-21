@@ -68,4 +68,14 @@ class Contact extends Model implements CustomFielded, Flashable
     {
         return trim($this->title . ' ' . $this->firstname . ' ' . $this->name . ', ' . $this->title_after);
     }
+
+    public function comments(): HasMany
+    {
+        return $this->hasMany(Comment::class);
+    }
+
+    public function getThreadedComments()
+    {
+        return $this->comments()->with('user')->get()->threaded();
+    }
 }

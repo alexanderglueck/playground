@@ -73,7 +73,8 @@ class ContactController extends Controller
 
         return view('contact.show', [
             'contact' => $contact,
-            'views' => $this->viewService->getViews(ViewType::CONTACT)
+            'views' => $this->viewService->getViews(ViewType::CONTACT),
+            'comments' => $contact->getThreadedComments()
         ]);
     }
 

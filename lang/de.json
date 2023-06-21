@@ -96,6 +96,12 @@
     "ContactGroup": "Kontaktgruppe",
     "Edit contact group": "Kontaktgruppe bearbeiten",
     "Contact": "Kontakt",
-    "Edit contact": "Kontakt bearbeiten"
+    "Edit contact": "Kontakt bearbeiten",
+    "Comment": "Kommentar",
+    "Comments": "Kommentare",
+    "Create comment": "Kommentar erstellen",
+    "Edit comment": "Kommentar bearbeiten",
+    "Delete comment": "Kommentar löschen",
+    "No comments": "Keine Kommentare"
 }
 

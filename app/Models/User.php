@@ -45,7 +45,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    protected static function booted()
+    protected static function booted(): void
     {
         self::created(function (User $user) {
             TenantUserLookup::insert(

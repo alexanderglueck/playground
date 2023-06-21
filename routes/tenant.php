@@ -12,6 +12,7 @@ use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use App\Http\Controllers\CalendarController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ContactGroupController;
 use App\Http\Controllers\CustomFieldController;
@@ -57,6 +58,11 @@ Route::middleware([
         Route::get('/contacts/{contact}/edit', [ContactController::class, 'edit'])->name('contacts.edit');
         Route::put('/contacts/{contact}', [ContactController::class, 'update'])->name('contacts.update');
         Route::delete('/contacts/{contact}', [ContactController::class, 'destroy'])->name('contacts.destroy');
+
+        Route::post('comments', [CommentController::class, 'store'])->name('comments.store');
+        Route::get('comments/{comment}/edit', [CommentController::class, 'edit'])->name('comments.edit');
+        Route::put('comments/{comment}', [CommentController::class, 'update'])->name('comments.update');
+        Route::delete('comments/{comment}', [CommentController::class, 'destroy'])->name('comments.destroy');
 
         Route::get('/invoices/options', [InvoiceOptionController::class, 'index'])->name('invoice_options.index');
         Route::get('/invoices/options/create', [InvoiceOptionController::class, 'create'])->name('invoice_options.create');

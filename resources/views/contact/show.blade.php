@@ -17,4 +17,8 @@
     <x-panel>
         {{ \App\Support\Layout::render($contact, \App\Support\LayoutMode::VIEW) }}
     </x-panel>
+
+    <x-panel>
+        @include('comment.index', ['typeColumn' => 'contact_id', 'typeId' => $contact->id])
+    </x-panel>
 </x-app-layout>

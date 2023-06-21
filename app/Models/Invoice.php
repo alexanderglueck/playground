@@ -87,7 +87,7 @@ class Invoice extends Model implements Flashable, Shareable
         return $service->build();
     }
 
-    protected static function booted()
+    protected static function booted(): void
     {
         self::creating(function (Invoice $invoice) {
             if (isset($invoice->number)) {
