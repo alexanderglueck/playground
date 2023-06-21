@@ -15,7 +15,7 @@
                         <a href="{{ route('contacts.show', $contact) }}" title="{{ __('View contact') }}">{{ __('Details') }}</a>
                     </td>
                     @foreach($contact->fields() as $field)
-                        <td>{{ $field->value }}</td>
+                        <td>{{ $field->render(\App\Support\LayoutMode::VIEW) }}</td>
                     @endforeach
                 </tr>
             @endforeach
