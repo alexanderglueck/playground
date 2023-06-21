@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 
 interface CustomFielded
 {
-    public function getViewType(): ViewType;
+    public static function getViewType(): ViewType;
 
     public function fieldValue(Field $field);
 

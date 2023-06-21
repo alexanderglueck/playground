@@ -15,12 +15,16 @@ trait HasCustomFields
     public function fieldValue(Field $field)
     {
         if ( ! $field->isCustomField()) {
+            if ($field->hasCustomValueGetter()) {
+                return $field->getValue($this);
+            }
+
             return $this->{$field->column};
         }
 
         $this->loadMissing('customFields');
 
-        return $this->customFields->{$field->column};
+        return $this->customFields->{$field->column} ?? null;
     }
 
     public function view(): BelongsTo

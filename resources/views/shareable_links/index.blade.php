@@ -14,7 +14,7 @@
                     <form action="{{ route('shared.destroy', $shareableLink) }}" method="post" class="inline">
                         @csrf
                         @method('DELETE')
-                        <button type="submit">Delete</button>
+                        <button type="submit">{{ __('Delete') }}</button>
                     </form>
                 </li>
             @endforeach

@@ -1,21 +1,21 @@
 <div class="form-group {{ $errors->has('name') ? ' has-error' : '' }}">
     <label for="name">
-        Name
+        {{ __('Name') }}
     </label>
-    <input type="text" class="form-control" id="name" placeholder="Name" name="name" value="{{ old('name', $note->name) }}" >
+    <input type="text" class="form-control" id="name" placeholder="{{ __('Name') }}" name="name" value="{{ old('name', $note->name) }}" >
 
-    @if($errors->has('name'))
+    @error('name')
         <span class="help-block">
-                                        <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
-    @endif
+            <strong>{{ $message  }}</strong>
+        </span>
+    @enderror
 
 </div>
 
 
 <div class="form-group {{ $errors->has('notebook') ? ' has-error' : '' }}">
     <label for="notebook">
-        Notebook
+        {{ __('Notebook') }}
     </label>
     <select class="form-control" id="notebook" name="notebook">
         @foreach($notebooks as $notebook)
@@ -23,16 +23,16 @@
         @endforeach
     </select>
 
-    @if($errors->has('notebook'))
+    @error('notebook')
         <span class="help-block">
-                        <strong>{{ $errors->first('notebook') }}</strong>
-                    </span>
-    @endif
+            <strong>{{ $message  }}</strong>
+        </span>
+    @enderror
 </div>
 
 <div class="form-group {{ $errors->has('tags') ? ' has-error' : '' }}">
     <label for="tags">
-        Tags
+        {{ __('Tags') }}
     </label>
     <select multiple class="form-control" id="tags" name="tags[]">
         @foreach($tags as $tag)
@@ -40,22 +40,22 @@
         @endforeach
     </select>
 
-    @if($errors->has('tags'))
+    @error('tags')
         <span class="help-block">
-                        <strong>{{ $errors->first('tags') }}</strong>
-                    </span>
-    @endif
+            <strong>{{ $message  }}</strong>
+        </span>
+    @enderror
 </div>
 
 
 <div class="form-group {{ $errors->has('content') ? ' has-error' : '' }}">
     <label for="content">
-        Content
+        {{ __('Content') }}
     </label>
     <textarea id="content" name="content" class="form-control editor" rows="3">{{ old('content', $note->content) }}</textarea>
-    @if($errors->has('content'))
+    @error('content')
         <span class="help-block">
-                        <strong>{{ $errors->first('content') }}</strong>
-                    </span>
-    @endif
+            <strong>{{ $message  }}</strong>
+        </span>
+    @enderror
 </div>

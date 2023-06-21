@@ -5,7 +5,7 @@
         <div class="col-sm-6">
             <div class="card">
                 <div class="card-body">
-                    <h5 class="card-title">Sign up</h5>
+                    <h5 class="card-title">{{ __('Sign up') }}</h5>
                     <form method="post" action="{{ $route }}">
                         @csrf
                         <div class="mb-3">
@@ -38,7 +38,7 @@
                             @enderror
                         </div>
 
-                        <button type="submit" class="btn btn-primary">Sign up</button>
+                        <button type="submit" class="btn btn-primary">{{ __('Sign up') }}</button>
                     </form>
                 </div>
             </div>

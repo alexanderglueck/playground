@@ -11,7 +11,7 @@ class InvoiceController extends Controller
 {
     public function index()
     {
-        return view('invoices.index', [
+        return view('invoice.index', [
             'invoices' => Invoice::with('invoiceItems')->get()
         ]);
     }
@@ -20,12 +20,16 @@ class InvoiceController extends Controller
     {
         $invoice->loadMissing(['invoiceItems', 'invoiceOption']);
 
-        return [
-            $invoice,
-            $invoice->sumGross(),
-            $invoice->sum(),
-            $invoice->share()
-        ];
+//        return [
+//            $invoice,
+//            $invoice->sumGross(),
+//            $invoice->sum(),
+//            $invoice->share()
+//        ];
+
+        return view('invoice.show', [
+            'invoice' => $invoice
+        ]);
     }
 
     public function store(CreateInvoiceAction $createInvoiceAction)

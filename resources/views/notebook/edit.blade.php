@@ -13,7 +13,7 @@
             @include('notebook.partials.edit')
 
             <button type="submit" class="btn btn-default">
-                Edit notebook
+                {{ __('Edit notebook') }}
             </button>
 
         </form>

@@ -14,7 +14,12 @@
             @foreach($notebooks as $notebook)
                 <li>
                     <a href="{{ route('notebooks.show', [$notebook->id]) }}"
-                       title="{{ __('View notebook') }}">{{ $notebook->name }}</a>
+                       title="{{ __('View notebook') }}">
+                        {{ $notebook->name }}
+                        @if($notebook->is_private)
+                            ({{ __('Private') }})
+                        @endif
+                    </a>
                 </li>
             @endforeach
         </ul>

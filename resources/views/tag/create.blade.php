@@ -11,16 +11,16 @@
 
             <div class="form-group {{ $errors->has('name') ? ' has-error' : '' }}">
                 <label for="tag">
-                    Tag
+                    {{ __('Tag') }}
                 </label>
-                <input type="text" class="form-control" id="tag" placeholder="Tag" name="name"
+                <input type="text" class="form-control" id="tag" placeholder="{{ __('Tag') }}" name="name"
                        value="{{ old('name') }}">
 
-                @if($errors->has('name'))
+                @error('name')
                     <span class="help-block">
-                        <strong>{{ $errors->first('name') }}</strong>
+                        <strong>{{ $message  }}</strong>
                     </span>
-                @endif
+                @enderror
 
             </div>
 

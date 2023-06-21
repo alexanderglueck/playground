@@ -2,6 +2,7 @@
 
 namespace App\Support;
 
+use App\Support\InputTypes\ContactGroup;
 use App\Support\InputTypes\Country;
 use App\Support\InputTypes\Date;
 use App\Support\InputTypes\Email;
@@ -15,7 +16,7 @@ use Illuminate\Support\HtmlString;
 
 class Layout
 {
-    public static function render(CustomFielded $model): Htmlable
+    public static function render(CustomFielded $model, LayoutMode $layoutMode): Htmlable
     {
         $fields = $model->fields()->groupBy('pivot.row')->sortKeys();
 
@@ -31,10 +32,11 @@ class Layout
                     'phone' => new Phone($field),
                     'email' => new Email($field),
                     'section' => new Section($field),
+                    'contact_group' => new ContactGroup($field),
                     default => new InputType($field)
                 };
 
-                $cols[] = $class->toHtmlElement();
+                $cols[] = $class->toHtmlElement($layoutMode);
             }
 
             $rows[] = $cols;

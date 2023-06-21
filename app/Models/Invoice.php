@@ -78,7 +78,7 @@ class Invoice extends Model implements Flashable, Shareable
 
     public function toPdf(): Output
     {
-        $source = Blade::render('invoices.pdf', [
+        $source = Blade::render('invoice.pdf', [
             'invoice' => $this
         ]);
 

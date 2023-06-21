@@ -12,7 +12,7 @@
             @include('note.partials.edit')
 
             <button type="submit" class="btn btn-default">
-                Create note
+                {{ __('Create note') }}
             </button>
 
         </form>

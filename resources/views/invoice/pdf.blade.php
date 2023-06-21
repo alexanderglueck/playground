@@ -7,7 +7,7 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 </head>
 <body>
-<h1>Invoice {{ $invoice->number }}</h1>
+<h1>{{ __('Invoice') }} {{ $invoice->number }}</h1>
 
 <ul>
     @foreach($invoice->invoiceItems as $invoiceItem)

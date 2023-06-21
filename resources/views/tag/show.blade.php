@@ -5,13 +5,13 @@
         </h2>
 
         <div>
-        <a href="{{ route('tags.edit', [$tag->id]) }}">Edit</a>
+        <a href="{{ route('tags.edit', [$tag->id]) }}">{{ __('Edit') }}</a>
 
         <form id="delete-form" class="confirm-delete d-inline inline" action="{{ route('tags.destroy', [$tag->id]) }}" method="POST" >
             @csrf
             @method('DELETE')
 
-            <button class="btn btn-link p-0">Delete</button>
+            <button class="btn btn-link p-0">{{ __('Delete') }}</button>
         </form>
         </div>
     </x-slot>

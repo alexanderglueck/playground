@@ -3,27 +3,44 @@
 namespace App\Models;
 
 use App\Models\Scopes\LimitContactsScope;
-use App\Support\AccessRight;
 use App\Support\CanBeFlashed;
 use App\Support\CustomContact;
 use App\Support\CustomFielded;
 use App\Support\Flashable;
 use App\Support\HasCustomFields;
 use App\Support\ViewType;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Query\Builder as QueryBuilder;
 
 class Contact extends Model implements CustomFielded, Flashable
 {
     use HasFactory, HasCustomFields, CanBeFlashed;
 
+    protected $fillable = [
+        'firstname',
+        'name',
+        'company',
+        'vat_id',
+        'email',
+        'phone',
+        'mobile_phone',
+        'fax',
+        'date_of_birth',
+        'title',
+        'title_after',
+        'street',
+        'zip',
+        'city',
+        'country',
+        'gender',
+        'view_id'
+    ];
+
     protected static function booted(): void
     {
-        Model::addGlobalScope(new LimitContactsScope());
+        static::addGlobalScope(new LimitContactsScope());
     }
 
     public function invoices(): HasMany
@@ -37,7 +54,7 @@ class Contact extends Model implements CustomFielded, Flashable
             ->withTimestamps();
     }
 
-    public function getViewType(): ViewType
+    public static function getViewType(): ViewType
     {
         return ViewType::CONTACT;
     }
@@ -47,15 +64,8 @@ class Contact extends Model implements CustomFielded, Flashable
         return CustomContact::class;
     }
 
-    public function scopeVisibleTo(Builder $query, User $user): void
+    public function getFlashName(): string
     {
-        $query->whereExists(function (QueryBuilder $query) use ($user) {
-            $query->select('contact_contact_group.contact_id')
-                ->from('contact_contact_group')
-                ->join('contact_group_user', 'contact_group_user.contact_group_id', '=', 'contact_contact_group.contact_group_id')
-                ->whereIn('contact_group_user.privilege', [AccessRight::READ, AccessRight::WRITE])
-                ->where('contact_group_user.user_id', '=', $user->id)
-                ->whereColumn('contact_contact_group.contact_id', '=', 'contacts.id');
-        });
+        return trim($this->title . ' ' . $this->firstname . ' ' . $this->name . ', ' . $this->title_after);
     }
 }

@@ -5,14 +5,14 @@
         </h2>
 
         <div>
-            <a href="{{ route('notes.edit', [$note->id]) }}">Edit</a>
+            <a href="{{ route('notes.edit', [$note->id]) }}">{{ __('Edit') }}</a>
 
             <form id="delete-form" class="confirm-delete d-inline inline"
                   action="{{ route('notes.destroy', [$note->id]) }}" method="POST">
                 @csrf
                 @method('DELETE')
 
-                <button type="submit" class="btn btn-link p-0">Delete</button>
+                <button type="submit" class="btn btn-link p-0">{{ __('Delete') }}</button>
             </form>
         </div>
 
@@ -28,7 +28,6 @@
                 </li>
             @endforeach
         </ul>
-        {{ $note->content }}
-        {{--        {!! app(\App\Markdown::class)->toHtml($note->content) !!}--}}
+        {!! \Illuminate\Mail\Markdown::parse($note->content) !!}
     </x-panel>
 </x-app-layout>

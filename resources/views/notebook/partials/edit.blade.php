@@ -2,7 +2,7 @@
     <label for="name">
         {{ __('Name') }}
     </label>
-    <input type="text" class="form-control" id="name" placeholder="Name" name="name"
+    <input type="text" class="form-control" id="name" placeholder="{{ __('Name') }}" name="name"
            value="{{ old('name', $notebook->name) }}">
 
     @error('name')

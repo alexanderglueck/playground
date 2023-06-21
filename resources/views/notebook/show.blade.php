@@ -12,7 +12,7 @@
                 @csrf
                 @method('DELETE')
 
-                <button type="submit" class="btn-link btn p-0">Delete</button>
+                <button type="submit" class="btn-link btn p-0">{{ __('Delete') }}</button>
             </form>
         </div>
     </x-slot>

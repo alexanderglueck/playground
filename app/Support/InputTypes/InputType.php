@@ -3,6 +3,7 @@
 namespace App\Support\InputTypes;
 
 use App\Models\Field;
+use App\Support\LayoutMode;
 use Illuminate\Support\HtmlString;
 use Illuminate\Support\Str;
 
@@ -15,7 +16,7 @@ class InputType
         $this->randomId = Str::random(10);
     }
 
-    public function toHtmlElement(): HtmlString
+    public function toHtmlElement(LayoutMode $layoutMode): HtmlString
     {
         return new HtmlString($this->getNameForLabel() . ':' . e($this->field->value));
     }

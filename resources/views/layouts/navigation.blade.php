@@ -20,6 +20,10 @@
                         {{ __('Contacts') }}
                     </x-nav-link>
 
+                    <x-nav-link :href="route('contact_groups.index')" :active="request()->routeIs('contact_groups.index')">
+                        {{ __('Contact groups') }}
+                    </x-nav-link>
+
                     <x-nav-link :href="route('invoices.index')" :active="request()->routeIs('invoices.index')">
                         {{ __('Invoices') }}
                     </x-nav-link>
@@ -93,6 +97,34 @@
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('contacts.index')" :active="request()->routeIs('contacts.index')">
+                {{ __('Contacts') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('contact_groups.index')" :active="request()->routeIs('contact_groups.index')">
+                {{ __('Contact groups') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('invoices.index')" :active="request()->routeIs('invoices.index')">
+                {{ __('Invoices') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('invoice_options.index')" :active="request()->routeIs('invoice_options.index')">
+                {{ __('Invoice Options') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('calendar.show')" :active="request()->routeIs('calendar.show')">
+                {{ __('Calendar') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('notebooks.index')" :active="request()->routeIs('notebooks.index')">
+                {{ __('Notebooks') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('shared.index')" :active="request()->routeIs('shared.index')">
+                {{ __('Sharing Center') }}
             </x-responsive-nav-link>
         </div>
 

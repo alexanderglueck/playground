@@ -13,6 +13,8 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ContactGroupController;
+use App\Http\Controllers\CustomFieldController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\ImpersonationController;
@@ -49,7 +51,12 @@ Route::middleware([
 
     Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/contacts', [ContactController::class, 'index'])->name('contacts.index');
+        Route::get('/contacts/create', [ContactController::class, 'create'])->name('contacts.create');
+        Route::post('/contacts', [ContactController::class, 'store'])->name('contacts.store');
         Route::get('/contacts/{contact}', [ContactController::class, 'show'])->name('contacts.show');
+        Route::get('/contacts/{contact}/edit', [ContactController::class, 'edit'])->name('contacts.edit');
+        Route::put('/contacts/{contact}', [ContactController::class, 'update'])->name('contacts.update');
+        Route::delete('/contacts/{contact}', [ContactController::class, 'destroy'])->name('contacts.destroy');
 
         Route::get('/invoices/options', [InvoiceOptionController::class, 'index'])->name('invoice_options.index');
         Route::get('/invoices/options/create', [InvoiceOptionController::class, 'create'])->name('invoice_options.create');
@@ -57,7 +64,7 @@ Route::middleware([
 
         Route::get('/invoices', [InvoiceController::class, 'index'])->name('invoices.index');
         Route::get('/invoices/create', [InvoiceController::class, 'store'])->name('invoices.create');
-        Route::get('/invoices/credit/{invoice}', [InvoiceController::class, 'credit'])->name('invoices.credit');
+        Route::post('/invoices/credit/{invoice}', [InvoiceController::class, 'credit'])->name('invoices.credit');
         Route::get('/invoices/{invoice}/pdf/download', [InvoicePdfController::class, 'store'])->name('invoices.pdf.download');
         Route::get('/invoices/{invoice}/pdf/inline', [InvoicePdfController::class, 'show'])->name('invoices.pdf.inline');
         Route::get('/invoices/{invoice}', [InvoiceController::class, 'show'])->name('invoices.show');
@@ -73,11 +80,23 @@ Route::middleware([
 
         Route::get('/sharing-center', [ShareableController::class, 'index'])->name('shared.index');
 
+        Route::resource('contact-groups', ContactGroupController::class)->names([
+            'index' => 'contact_groups.index',
+            'create' => 'contact_groups.create',
+            'store' => 'contact_groups.store',
+            'show' => 'contact_groups.show',
+            'edit' => 'contact_groups.edit',
+            'update' => 'contact_groups.update',
+            'destroy' => 'contact_groups.destroy',
+        ]);
         Route::resource('notebooks', NotebookController::class);
         Route::resource('notes', NoteController::class);
         Route::resource('tags', TagController::class);
 
         Route::delete('/shared/{link}', [ShareableController::class, 'destroy'])->name('shared.destroy');
+
+        Route::get('custom-fields/{viewType}/create', [CustomFieldController::class, 'create'])->name('custom_fields.create');
+        Route::post('custom-fields/{viewType}', [CustomFieldController::class, 'store'])->name('custom_fields.store');
 
         // TODO Add is-admin middleware or impersonation permission
         Route::get('/impersonate', [ImpersonationController::class, 'show']);

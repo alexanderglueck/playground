@@ -20,11 +20,7 @@ class ContactPolicy
      */
     public function view(User $user, Contact $contact): bool
     {
-        if ( ! $user->hasPermissionTo('view-contacts')) {
-            return false;
-        }
-
-        return $contact->user_id == $user->id;
+        return $user->hasPermissionTo('view-contacts');
     }
 
     /**
@@ -40,11 +36,7 @@ class ContactPolicy
      */
     public function update(User $user, Contact $contact): bool
     {
-        if ( ! $user->hasPermissionTo('update-contacts')) {
-            return false;
-        }
-
-        return $contact->user_id == $user->id;
+        return $user->hasPermissionTo('update-contacts');
     }
 
     /**
@@ -52,11 +44,7 @@ class ContactPolicy
      */
     public function delete(User $user, Contact $contact): bool
     {
-        if ( ! $user->hasPermissionTo('delete-contacts')) {
-            return false;
-        }
-
-        return $contact->user_id == $user->id;
+        return $user->hasPermissionTo('delete-contacts');
     }
 
     /**
@@ -64,11 +52,7 @@ class ContactPolicy
      */
     public function restore(User $user, Contact $contact): bool
     {
-        if ( ! $user->hasPermissionTo('restore-contacts')) {
-            return false;
-        }
-
-        return $contact->user_id == $user->id;
+        return $user->hasPermissionTo('restore-contacts');
     }
 
     /**
@@ -76,10 +60,6 @@ class ContactPolicy
      */
     public function forceDelete(User $user, Contact $contact): bool
     {
-        if ( ! $user->hasPermissionTo('force-delete-contacts')) {
-            return false;
-        }
-
-        return $contact->user_id == $user->id;
+        return $user->hasPermissionTo('force-delete-contacts');
     }
 }

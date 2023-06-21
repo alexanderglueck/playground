@@ -48,9 +48,10 @@ A playground where I play with different packages and Docker setups.
   - [ ] See who is currently viewing a page (Websockets (soketi))
   - [ ] User groups
     - [ ] Permissions on user groups
-  - [ ] Notes 
+      - Groups on resource-parents (invoice groups are parents of invoices, contact groups are parents of contacts)
+  - [x] Notes 
   -   [x] Initial implementation
-  -   [ ] markdown support (CKEditor)
+  -   [x] Markdown support (CKEditor)
   - [ ] Calendar sync-able to Google Calendar (ics export)
   - [ ] Multiple calendar support (User can have multiple calendars)
   - [ ] Calendars can be shared with other users
@@ -63,3 +64,5 @@ A playground where I play with different packages and Docker setups.
 - [ ] PDF preview using pdf.js
 - [x] Invoice PDFs using [weasyprint](https://weasyprint.org/) (rudimentary support)
 - [ ] HTML to markdown conversion (for sanitization reasons)
+- [ ] Notifications for actions (Queued export ready, User accepted an invitation)
+- [ ] Use meilisearch for facet search
