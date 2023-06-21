@@ -9,7 +9,7 @@
         </span>
         <div class="clearfix"></div>
 
-        {!! /* TODO Replace with Markdown */ nl2br(e($comment->comment)) !!}
+        {!! \Illuminate\Mail\Markdown::parse($comment->comment) !!}
 
         @include ('comment.create', ['parentId' => $comment->id])
 

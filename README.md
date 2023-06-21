@@ -45,6 +45,7 @@ A playground where I play with different packages and Docker setups.
   - [ ] Tasks
     - [ ] Task deadline in calendar
   - [ ] Comments
+    - [x] Contacts
   - [ ] See who is currently viewing a page (Websockets (soketi))
   - [ ] User groups
     - [ ] Permissions on user groups
