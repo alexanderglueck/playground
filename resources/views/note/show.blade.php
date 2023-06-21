@@ -28,6 +28,6 @@
                 </li>
             @endforeach
         </ul>
-        {!! \Illuminate\Mail\Markdown::parse($note->content) !!}
+        {!! app(\App\Support\Sanitizer::class)->sanitize(\Illuminate\Mail\Markdown::parse($note->content)) !!}
     </x-panel>
 </x-app-layout>

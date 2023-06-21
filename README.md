@@ -65,5 +65,6 @@ A playground where I play with different packages and Docker setups.
 - [ ] PDF preview using pdf.js
 - [x] Invoice PDFs using [weasyprint](https://weasyprint.org/) (rudimentary support)
 - [ ] HTML to markdown conversion (for sanitization reasons)
+- [x] Html sanitization (comments, notes) (symfony/html-sanitizer)
 - [ ] Notifications for actions (Queued export ready, User accepted an invitation)
 - [ ] Use meilisearch for facet search

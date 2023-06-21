@@ -9,7 +9,7 @@
         </span>
         <div class="clearfix"></div>
 
-        {!! \Illuminate\Mail\Markdown::parse($comment->comment) !!}
+        {!! app(\App\Support\Sanitizer::class)->sanitize(\Illuminate\Mail\Markdown::parse($comment->comment)) !!}
 
         @include ('comment.create', ['parentId' => $comment->id])
 
