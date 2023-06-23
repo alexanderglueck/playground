@@ -24,6 +24,7 @@ class ContactService
     {
         $contact = new Contact();
         $contact->fill($data->toArray());
+        $contact->user_id = $user->id;
 
         if ( ! $contact->save()) {
             throw new RuntimeException(__('Could not create contact'));
