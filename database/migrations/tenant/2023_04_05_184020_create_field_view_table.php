@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('field_view', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('view_id');
-            $table->foreignId('field_id');
+            $table->foreignId('view_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('field_id')->constrained()->cascadeOnDelete()->cascadeOnUpdate();
             $table->unsignedInteger('row');
             $table->unsignedInteger('column');
             $table->string('text')->nullable();
