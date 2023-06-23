@@ -68,3 +68,9 @@ A playground where I play with different packages and Docker setups.
 - [x] Html sanitization (comments, notes) (symfony/html-sanitizer)
 - [ ] Notifications for actions (Queued export ready, User accepted an invitation)
 - [ ] Use meilisearch for facet search
+
+## Setup
+
+Edit the .env file and enter your credentials
+php artisan migrate
+php artisan db:seed
