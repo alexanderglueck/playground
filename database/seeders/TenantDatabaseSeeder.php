@@ -5,8 +5,6 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\Permission;
 use App\Models\Role;
-use App\Models\User;
-use App\Support\ViewType;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -43,12 +41,5 @@ class TenantDatabaseSeeder extends Seeder
                 ];
             })->toArray()
         );
-
-        DB::table('role_user')->insert([
-            [
-                'role_id' => $role->id,
-                'user_id' => User::first()->id,
-            ],
-        ]);
     }
 }

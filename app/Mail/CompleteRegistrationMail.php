@@ -19,12 +19,11 @@ class CompleteRegistrationMail extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct(string $email, string $workspace)
+    public function __construct(string $workspace)
     {
         $this->url = URL::temporarySignedRoute(
             'workspace.create', now()->addMinutes(30), [
                 'workspace' => $workspace,
-                'email' => $email,
             ]
         );
     }

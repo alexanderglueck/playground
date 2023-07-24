@@ -170,7 +170,7 @@ class FieldsTableSeeder extends Seeder
             ],
         ]);
 
-        DB::table('views')->insert([
+        DB::table('field_view')->insert([
             [
                 "id" => 1,
                 "view_id" => 1,

@@ -39,3 +39,21 @@ if (document.querySelector('.editor')) {
         console.error(error);
     }
 }
+
+if (document.querySelector('.create-tenant')) {
+    let tenantReady = false;
+
+    let intervalId = window.setInterval(function () {
+        axios.post('/api/workspace/availability', {
+            workspace: document.querySelector('input[type=hidden][name=workspace].js-val').value
+        })
+            .then(res => {
+                tenantReady = !res.data.available;
+
+                if (tenantReady) {
+                    clearInterval(intervalId);
+                    document.querySelector('button.create-tenant').disabled = false
+                }
+            })
+    }, 5000);
+}

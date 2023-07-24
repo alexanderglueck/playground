@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
+use App\Jobs\Tenancy\SeedDatabase;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
@@ -28,13 +29,14 @@ class TenancyServiceProvider extends ServiceProvider
                     Jobs\CreateDatabase::class,
                     // TODO Add job to import the migration dump
                     Jobs\MigrateDatabase::class,
-                    Jobs\SeedDatabase::class,
+                    SeedDatabase::class,
 
                     // Your own jobs to prepare the tenant.
                     // Provision API keys, create S3 buckets, anything you want!
 
                 ])->send(function (Events\TenantCreated $event) {
                     return $event->tenant;
+                    // TODO Replace false with app()->isProduction() once queue workers are set-up.
                 })->shouldBeQueued(false), // `false` by default, but you probably want to make this `true` for production.
             ],
             Events\SavingTenant::class => [],
@@ -47,6 +49,7 @@ class TenancyServiceProvider extends ServiceProvider
                     Jobs\DeleteDatabase::class,
                 ])->send(function (Events\TenantDeleted $event) {
                     return $event->tenant;
+                    // TODO Replace false with app()->isProduction() once queue workers are set-up.
                 })->shouldBeQueued(false), // `false` by default, but you probably want to make this `true` for production.
             ],
 
