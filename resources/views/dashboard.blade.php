@@ -7,5 +7,9 @@
 
     <x-panel>
         {{ __("You're logged in!") }}
+
+        <p>
+            <a href="{{ route('custom_fields.index') }}">{{ __('Custom fields') }}</a>
+        </p>
     </x-panel>
 </x-app-layout>

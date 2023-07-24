@@ -101,6 +101,7 @@ Route::middleware([
 
         Route::delete('/shared/{link}', [ShareableController::class, 'destroy'])->name('shared.destroy');
 
+        Route::get('custom-fields', [CustomFieldController::class, 'index'])->name('custom_fields.index');
         Route::get('custom-fields/{viewType}/create', [CustomFieldController::class, 'create'])->name('custom_fields.create');
         Route::post('custom-fields/{viewType}', [CustomFieldController::class, 'store'])->name('custom_fields.store');
 

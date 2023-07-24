@@ -5,23 +5,50 @@
         </h2>
     </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900 dark:text-gray-100">
+    <x-panel>
+        <form action="{{ route('custom_fields.store', ['viewType' => $viewType]) }}" method="post">
+            @csrf
 
-                    <form action="{{ route('custom_fields.store', ['viewType' => \App\Support\ViewType::CONTACT]) }}" method="post">
-                        @csrf
-
-                        <input type="text" name="name">
-                        <input type="text" name="field_type">
-
-                        <button type="submit" class="btn btn-primary">{{ __('Create') }}</button>
-
-                    </form>
+            <div class="mb-3">
+                <label for="name" class="form-label">{{ __('Name') }}</label>
+                <input type="text" id="name" name="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}" required />
+                @error('name')
+                <div class="invalid-feedback">
+                    {{ $message }}
                 </div>
+                @enderror
             </div>
-        </div>
-    </div>
+
+            <div class="mb-3">
+                <label for="field_type" class="form-label">{{ __('Type') }}</label>
+                <select name="field_type" id="field_type" class="form-control @error('field_type') is-invalid @enderror" required>
+                    <option @selected(old('field_type') == 'text') value="text">{{ __('Text') }}</option>
+                    <option @selected(old('field_type') == 'email') value="email">{{ __('E-Mail') }}</option>
+                    <option @selected(old('field_type') == 'phone') value="phone">{{ __('Phone') }}</option>
+                    <option @selected(old('field_type') == 'date') value="date">{{ __('Date') }}</option>
+                    <option @selected(old('field_type') == 'country') value="country">{{ __('Country') }}</option>
+                    <option @selected(old('field_type') == 'section') value="section">{{ __('Section') }}</option>
+                </select>
+                @error('field_type')
+                <div class="invalid-feedback">
+                    {{ $message }}
+                </div>
+                @enderror
+            </div>
+
+            <button type="submit" class="btn btn-primary">{{ __('Create') }}</button>
+        </form>
+    </x-panel>
+
+    <x-panel>
+        @if($fields->isEmpty())
+            {{ __("You haven't created any custom fields yet.") }}
+        @else
+            @foreach($fields as $field)
+                {{ $field->name }}
+            @endforeach
+        @endif
+    </x-panel>
+
 
 </x-app-layout>

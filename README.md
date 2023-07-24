@@ -18,7 +18,7 @@ A playground where I play with different packages and Docker setups.
 - [ ] L10n and i18n
 - [ ] Custom field handling
   - [x] Support custom fields
-  - [ ] Support adding custom fields in the application
+  - [x] Support adding custom fields in the application
   - [ ] Support removing custom fields in the application
 - [ ] Custom view handling
   - [x] Support custom views (e.g. Customer: name, address / Company: company name, address, vat id) 

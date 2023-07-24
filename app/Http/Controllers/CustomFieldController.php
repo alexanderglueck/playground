@@ -13,9 +13,19 @@ class CustomFieldController extends Controller
     {
     }
 
-    public function create()
+    public function index()
     {
-        return view('custom_fields.create');
+        return view('custom_fields.index', [
+            'viewTypes' => ViewType::class
+        ]);
+    }
+
+    public function create(ViewType $viewType)
+    {
+        return view('custom_fields.create', [
+            'viewType' => $viewType,
+            'fields' => $this->customFieldService->getCustomFields($viewType)
+        ]);
     }
 
     public function store(ViewType $viewType, CustomFieldRequest $request)
@@ -26,6 +36,6 @@ class CustomFieldController extends Controller
             return redirect()->back()->withInput()->withException($e);
         }
 
-        return redirect()->route('custom_fields.create');
+        return redirect()->route('custom_fields.create', $viewType);
     }
 }

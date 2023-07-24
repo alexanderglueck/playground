@@ -3,15 +3,24 @@
 namespace App\Services;
 
 use App\Data\CustomFieldData;
+use App\Models\Contact;
 use App\Models\Field;
 use App\Models\User;
 use App\Support\ViewType;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Str;
 
 class CustomFieldService
 {
+    public function getCustomFields(ViewType $viewType): Collection
+    {
+        return Field::query()
+            ->where('is_custom', '=', 1)
+            ->where('view_type', '=', $viewType->value)->get();
+    }
+
     public function createCustomField(User $user, CustomFieldData $data, ViewType $viewType): Field
     {
         $field = new Field();

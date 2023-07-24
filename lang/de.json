@@ -102,6 +102,10 @@
     "Create comment": "Kommentar erstellen",
     "Edit comment": "Kommentar bearbeiten",
     "Delete comment": "Kommentar löschen",
-    "No comments": "Keine Kommentare"
+    "No comments": "Keine Kommentare",
+    "Custom fields": "Eigene Felder",
+    "Create custom field": "Eigenes Feld erstellen",
+    "Create": "Erstellen",
+    "You haven't created any custom fields yet.": "Du hast noch keine eigenen Felder erstellt."
 }
 
