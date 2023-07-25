@@ -3,7 +3,6 @@
 namespace App\Services;
 
 use App\Data\CustomFieldData;
-use App\Models\Contact;
 use App\Models\Field;
 use App\Models\User;
 use App\Support\ViewType;
@@ -30,10 +29,7 @@ class CustomFieldService
         $field->is_custom = true;
         $field->save();
 
-        $tableName = match ($viewType) {
-            ViewType::CONTACT => 'custom_contacts',
-            ViewType::TASK => throw new \Exception('To be implemented')
-        };
+        $tableName = $this->getTableName($viewType);
 
         Schema::table($tableName, function (Blueprint $table) use ($field) {
             switch ($field->field_type) {
@@ -49,5 +45,24 @@ class CustomFieldService
         });
 
         return $field;
+    }
+
+    public function deleteCustomField(User $user, Field $field): void
+    {
+        $tableName = $this->getTableName($field->view_type);
+
+        Schema::table($tableName, function (Blueprint $table) use ($field) {
+            $table->dropColumn($field->column);
+        });
+
+        $field->delete();
+    }
+
+    private function getTableName(ViewType $viewType): string
+    {
+        return match ($viewType) {
+            ViewType::CONTACT => 'custom_contacts',
+            ViewType::TASK => throw new \Exception('To be implemented')
+        };
     }
 }

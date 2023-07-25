@@ -39,16 +39,4 @@
             <button type="submit" class="btn btn-primary">{{ __('Create') }}</button>
         </form>
     </x-panel>
-
-    <x-panel>
-        @if($fields->isEmpty())
-            {{ __("You haven't created any custom fields yet.") }}
-        @else
-            @foreach($fields as $field)
-                {{ $field->name }}
-            @endforeach
-        @endif
-    </x-panel>
-
-
 </x-app-layout>

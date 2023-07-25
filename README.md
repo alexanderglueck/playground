@@ -19,7 +19,7 @@ A playground where I play with different packages and Docker setups.
 - [ ] Custom field handling
   - [x] Support custom fields
   - [x] Support adding custom fields in the application
-  - [ ] Support removing custom fields in the application
+  - [x] Support removing custom fields in the application
 - [ ] Custom view handling
   - [x] Support custom views (e.g. Customer: name, address / Company: company name, address, vat id) 
   - [ ] Make it user manageable
@@ -68,6 +68,7 @@ A playground where I play with different packages and Docker setups.
 - [x] Html sanitization (comments, notes) (symfony/html-sanitizer)
 - [ ] Notifications for actions (Queued export ready, User accepted an invitation)
 - [ ] Use meilisearch for facet search
+- [ ] Add npm to docker image
 
 ## Setup
 
