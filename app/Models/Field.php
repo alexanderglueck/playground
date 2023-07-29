@@ -53,6 +53,11 @@ class Field extends Model
         };
     }
 
+    public function getNameForLabel(): string
+    {
+        return __('fields')[$this->name] ?? $this->name;
+    }
+
     public function render(LayoutMode $layoutMode): HtmlString
     {
         $class = match ($this->field_type) {

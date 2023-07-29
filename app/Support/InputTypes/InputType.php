@@ -23,7 +23,7 @@ class InputType
 
     public function getNameForLabel(): string
     {
-        return __('fields')[$this->field->name] ?? $this->field->name;
+        return $this->field->getNameForLabel();
     }
 
     public function getRandomId(): string

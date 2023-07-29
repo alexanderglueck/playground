@@ -9,13 +9,21 @@
 
     <x-panel>
         <table>
+            <thead>
+                <tr>
+                    <th></th>
+                    @foreach($fields as $field)
+                        <th>{{ $field->getNameForLabel() }}</th>
+                    @endforeach
+                </tr>
+            </thead>
             @foreach($contacts as $contact)
                 <tr>
                     <td>
                         <a href="{{ route('contacts.show', $contact) }}" title="{{ __('View contact') }}">{{ __('Details') }}</a>
                     </td>
-                    @foreach($contact->fields() as $field)
-                        <td>{{ $field->render(\App\Support\LayoutMode::VIEW) }}</td>
+                    @foreach($fields as $field)
+                        <td>{{  $contact->renderField($field, \App\Support\LayoutMode::VALUE) }}</td>
                     @endforeach
                 </tr>
             @endforeach

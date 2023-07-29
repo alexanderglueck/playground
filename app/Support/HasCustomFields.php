@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Support\HtmlString;
 
 trait HasCustomFields
 {
@@ -56,5 +57,12 @@ trait HasCustomFields
             $field->value = $this->fieldValue($field);
             return $field;
         });
+    }
+
+    public function renderField(Field $field, LayoutMode $layoutMode): HtmlString
+    {
+        $field->value = $this->fieldValue($field);
+
+        return $field->render($layoutMode);
     }
 }

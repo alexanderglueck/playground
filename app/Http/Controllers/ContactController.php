@@ -7,6 +7,7 @@ use App\Models\Contact;
 use App\Models\ContactGroup;
 use App\Models\Country;
 use App\Services\ContactService;
+use App\Services\FieldService;
 use App\Services\ViewService;
 use App\Support\Flash;
 use App\Support\ViewType;
@@ -19,7 +20,8 @@ class ContactController extends Controller
 {
     public function __construct(
         private readonly ContactService $contactService,
-        private readonly ViewService $viewService
+        private readonly ViewService $viewService,
+        private readonly FieldService $fieldService,
     )
     {
     }
@@ -28,8 +30,12 @@ class ContactController extends Controller
     {
         $this->authorize('viewAny', Contact::class);
 
+        $fields = $this->fieldService->getFields(ViewType::CONTACT);
+        $contacts = $this->contactService->getContacts();
+
         return view('contact.index', [
-            'contacts' => $this->contactService->getContacts()
+            'contacts' => $contacts,
+            'fields' => $fields
         ]);
     }
 
