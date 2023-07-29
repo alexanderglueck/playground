@@ -106,6 +106,10 @@
     "Custom fields": "Eigene Felder",
     "Create custom field": "Eigenes Feld erstellen",
     "Create": "Erstellen",
-    "You haven't created any custom fields yet.": "Du hast noch keine eigenen Felder erstellt."
+    "You haven't created any custom fields yet.": "Du hast noch keine eigenen Felder erstellt.",
+    "Contact import": "Kontaktimport",
+    "Import contacts": "Kontakte importieren",
+    "File": "Datei",
+    "Skip header row": "Überschriftenreihe überspringen"
 }
 

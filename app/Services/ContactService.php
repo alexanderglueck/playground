@@ -20,10 +20,14 @@ class ContactService
         return Contact::withFields()->with('contactGroups')->get();
     }
 
-    public function createContact(User $user, ContactData $data): Contact
+    public function createContact(User $user, ContactData $data, ): Contact
     {
-        // TODO Refactor so toArray only returns the fields that were passed with the view
-        $fieldInView = array_keys($this->viewValidationService->getRules(ViewType::CONTACT, $data->view->id));
+        if ($data->view) {
+            // TODO Refactor so toArray only returns the fields that were passed with the view
+            $fieldInView = array_keys($this->viewValidationService->getRules(ViewType::CONTACT, $data->view->id));
+        } else {
+            $fieldInView[] = 'contact_group';
+        }
 
         $contact = new Contact();
         $contact->fill($data->toArray());

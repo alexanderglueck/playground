@@ -37,7 +37,7 @@ A playground where I play with different packages and Docker setups.
   - Search for menu entries (New Invoice, Settings)
 - [ ] Features
   - [ ] Queued contact export
-  - [ ] Queued contact import with preview form 
+  - [x] Queued contact import with preview form 
   - [ ] Contact search
   - [ ] Multi contact modification (from search)
   - [ ] Modification history

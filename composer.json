@@ -14,6 +14,7 @@
         "rockett/weasyprint": "^7.0",
         "simshaun/recurr": "^5.0",
         "spatie/laravel-honeypot": "^4.3",
+        "spatie/simple-excel": "^3.2",
         "stancl/tenancy": "^3.7",
         "symfony/html-sanitizer": "^6.3"
     },

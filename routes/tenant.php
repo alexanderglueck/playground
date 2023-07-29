@@ -15,6 +15,7 @@ use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ContactGroupController;
+use App\Http\Controllers\ContactImportController;
 use App\Http\Controllers\CustomFieldController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EventController;
@@ -110,6 +111,11 @@ Route::middleware([
         // TODO Add is-admin middleware or impersonation permission
         Route::get('/impersonate', [ImpersonationController::class, 'show']);
         Route::get('/impersonate/{token}', [ImpersonationController::class, 'store']);
+
+        Route::get('contact-import', [ContactImportController::class, 'index'])->name('contact_import.index');
+        Route::post('contact-import', [ContactImportController::class, 'store'])->name('contact_import.store');
+        Route::get('contact-import/{contactImport}', [ContactImportController::class, 'show'])->name('contact_import.show');
+        Route::post('contact-import/{contactImport}', [ContactImportController::class, 'update'])->name('contact_import.update');
     });
 
     Route::middleware('auth')->group(function () {
@@ -142,8 +148,6 @@ Route::middleware([
     Route::middleware('shared')->group(function () {
         Route::get('/shared/{shareable_link}', [ShareableController::class, 'show'])->name('shared.show');
     });
-
-
 });
 
 Route::middleware([

@@ -9,7 +9,8 @@
         {{ __("You're logged in!") }}
 
         <p>
-            <a href="{{ route('custom_fields.index') }}">{{ __('Custom fields') }}</a>
+            <a href="{{ route('custom_fields.index') }}">{{ __('Custom fields') }}</a><br>
+            <a href="{{ route('contact_import.index') }}">{{ __('Contact import') }}</a><br>
         </p>
     </x-panel>
 </x-app-layout>
