@@ -22,6 +22,9 @@ class ContactService
 
     public function createContact(User $user, ContactData $data): Contact
     {
+        // TODO Refactor so toArray only returns the fields that were passed with the view
+        $fieldInView = array_keys($this->viewValidationService->getRules(ViewType::CONTACT, $data->view->id));
+
         $contact = new Contact();
         $contact->fill($data->toArray());
         $contact->user_id = $user->id;
@@ -34,7 +37,7 @@ class ContactService
             $contact->customFields()->update($data->customFields);
         }
 
-        if ($data->contactGroups !== null) {
+        if (in_array('contact_group', $fieldInView)) {
             // If contactGroups is null, no contact groups were selected.
             // We need to differentiate between "no contact groups were selected" and
             // "contact groups were absent from the edit mask".
@@ -75,7 +78,7 @@ class ContactService
             $contact->customFields()->update($data->customFields);
         }
 
-        if ($data->contactGroups !== null) {
+        if (in_array('contact_group', $fieldInView)) {
             // If contactGroups is null, no contact groups were selected.
             // We need to differentiate between "no contact groups were selected" and
             // "contact groups were absent from the edit mask".
@@ -86,7 +89,7 @@ class ContactService
             // Ideally we would calculate the difference between the received contact groups
             // and the contact groups the user is allowed to see, and to then detach the ones that are no longer
             // included in the diff.
-            $contact->contactGroups()->sync($data->contactGroups);
+            $contact->contactGroups()->sync($data->contactGroups ?? []);
         }
 
         return $contact;

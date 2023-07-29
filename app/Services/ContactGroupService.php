@@ -27,7 +27,9 @@ class ContactGroupService
         }
 
         // Add the creating user to the authorized users
-        $contactGroup->users()->updateExistingPivot($user, ['privilege' => AccessRight::WRITE]);
+        foreach($user->roles as $role) {
+            $contactGroup->roles()->updateExistingPivot($role, ['privilege' => AccessRight::WRITE]);
+        }
 
         return $contactGroup;
     }

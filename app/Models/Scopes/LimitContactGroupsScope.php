@@ -25,11 +25,11 @@ class LimitContactGroupsScope implements Scope
 
         // TODO Check if whereExists is really the correct way to check access
         $builder->whereExists(function (QueryBuilder $query) use ($user) {
-            $query->select('contact_group_user.contact_group_id')
-                ->from('contact_group_user')
-                ->whereIn('contact_group_user.privilege', [AccessRight::READ, AccessRight::WRITE])
-                ->where('contact_group_user.user_id', '=', $user->id)
-                ->whereColumn('contact_group_user.contact_group_id', '=', 'contact_groups.id');
+            $query->select('contact_group_role.contact_group_id')
+                ->from('contact_group_role')
+                ->whereIn('contact_group_role.privilege', [AccessRight::READ, AccessRight::WRITE])
+                ->whereIn('contact_group_role.role_id', $user->roles()->pluck('roles.id')->toArray())
+                ->whereColumn('contact_group_role.contact_group_id', '=', 'contact_groups.id');
         });
     }
 }

@@ -11,18 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('contact_group_user', function (Blueprint $table) {
+        Schema::create('contact_group_role', function (Blueprint $table) {
             $table->id();
             $table->foreignId('contact_group_id')->constrained()
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
-            $table->foreignId('user_id')->constrained()
+            $table->foreignId('role_id')->constrained()
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
             $table->string('privilege');
             $table->timestamps();
 
-            $table->unique(['contact_group_id', 'user_id']);
+            $table->unique(['contact_group_id', 'role_id']);
         });
     }
 
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('contact_group_user');
+        Schema::dropIfExists('contact_group_role');
     }
 };

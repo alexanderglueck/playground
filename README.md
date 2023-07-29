@@ -48,7 +48,7 @@ A playground where I play with different packages and Docker setups.
     - [x] Contacts
   - [ ] See who is currently viewing a page (Websockets (soketi))
   - [ ] User groups
-    - [ ] Permissions on user groups
+    - [x] Permissions on user groups
       - Groups on resource-parents (invoice groups are parents of invoices, contact groups are parents of contacts)
   - [x] Notes 
   -   [x] Initial implementation

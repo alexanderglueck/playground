@@ -10,10 +10,10 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        DB::unprepared('CREATE TRIGGER contact_group_user_after_insert AFTER INSERT ON `contact_groups` FOR EACH ROW
+        DB::unprepared('CREATE TRIGGER contact_group_role_after_insert AFTER INSERT ON `contact_groups` FOR EACH ROW
             BEGIN
-                INSERT INTO `contact_group_user` (`contact_group_id`, `user_id`, `privilege`)
-                SELECT NEW.id, id, "none" FROM `users`;
+                INSERT INTO `contact_group_role` (`contact_group_id`, `role_id`, `privilege`)
+                SELECT NEW.id, id, "none" FROM `roles`;
             END');
     }
 
@@ -22,6 +22,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        DB::unprepared("DROP TRIGGER `contact_group_user_after_insert`");
+        DB::unprepared("DROP TRIGGER `contact_group_role_after_insert`");
     }
 };

@@ -28,9 +28,9 @@ class ContactGroup extends Model implements Flashable
             ->withTimestamps();
     }
 
-    public function users(): BelongsToMany
+    public function roles(): BelongsToMany
     {
-        return $this->belongsToMany(User::class)
+        return $this->belongsToMany(Role::class)
             ->withTimestamps();
     }
 }
