@@ -9,3 +9,11 @@
 @if($layoutMode == \App\Support\LayoutMode::VIEW)
     <span>{{ $label }}: @if($value) <a href="mailto:{{ $value }}">{{ $value }}</a>@endif</span>
 @endif
+
+@if($layoutMode == \App\Support\LayoutMode::VALUE)
+    <span>@if($value) <a href="mailto:{{ $value }}">{{ $value }}</a>@endif</span>
+@endif
+
+@if($layoutMode == \App\Support\LayoutMode::RAW)
+    @if($value){{ $value }}@endif
+@endif

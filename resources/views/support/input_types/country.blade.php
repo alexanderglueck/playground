@@ -14,3 +14,11 @@
 @if($layoutMode == \App\Support\LayoutMode::VIEW)
     <span>{{ $label }}: {{($value ? __('countries')[$value] ?? $value : '') }}</span>
 @endif
+
+@if($layoutMode == \App\Support\LayoutMode::VALUE)
+    <span>{{($value ? __('countries')[$value] ?? $value : '') }}</span>
+@endif
+
+@if($layoutMode == \App\Support\LayoutMode::RAW)
+    {{($value ? __('countries')[$value] ?? $value : '') }}
+@endif

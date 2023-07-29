@@ -10,3 +10,11 @@
 @if($layoutMode == \App\Support\LayoutMode::VIEW)
     <span>{{ $label }}: {{ $value }}</span>
 @endif
+
+@if($layoutMode == \App\Support\LayoutMode::VALUE)
+    <span>{{ $value }}</span>
+@endif
+
+@if($layoutMode == \App\Support\LayoutMode::RAW)
+    {{ $value }}
+@endif

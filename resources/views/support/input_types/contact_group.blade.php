@@ -14,3 +14,11 @@
 @if($layoutMode == \App\Support\LayoutMode::VIEW)
     <span>{{ $label }}: {{ $value->map(function(\App\Models\ContactGroup $contactGroup) { return $contactGroup->name;})->join(', ') }}</span>
 @endif
+
+@if($layoutMode == \App\Support\LayoutMode::VALUE)
+    <span>{{ $value->map(function(\App\Models\ContactGroup $contactGroup) { return $contactGroup->name;})->join(', ') }}</span>
+@endif
+
+@if($layoutMode == \App\Support\LayoutMode::RAW)
+{{ $value->map(function(\App\Models\ContactGroup $contactGroup) { return $contactGroup->name;})->join(', ') }}
+@endif
