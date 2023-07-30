@@ -14,6 +14,7 @@ use App\Http\Controllers\Auth\VerifyEmailController;
 use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\ContactExportController;
 use App\Http\Controllers\ContactGroupController;
 use App\Http\Controllers\ContactImportController;
 use App\Http\Controllers\CustomFieldController;
@@ -116,6 +117,10 @@ Route::middleware([
         Route::post('contact-import', [ContactImportController::class, 'store'])->name('contact_import.store');
         Route::get('contact-import/{contactImport}', [ContactImportController::class, 'show'])->name('contact_import.show');
         Route::post('contact-import/{contactImport}', [ContactImportController::class, 'update'])->name('contact_import.update');
+
+        Route::get('contact-export', [ContactExportController::class, 'index'])->name('contact_export.index');
+        Route::post('contact-export', [ContactExportController::class, 'store'])->name('contact_export.store');
+
     });
 
     Route::middleware('auth')->group(function () {

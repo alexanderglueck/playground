@@ -32,7 +32,7 @@ class LimitContactsScope implements Scope
                     ->whereIn('contact_group_role.privilege', [AccessRight::READ, AccessRight::WRITE])
                     ->whereIn('contact_group_role.role_id', $user->roles()->pluck('roles.id')->toArray())
                     ->whereColumn('contact_contact_group.contact_id', '=', 'contacts.id');
-            })->orWhereNotIn('id', DB::table('contact_contact_group')->select('contact_id'));
+            })->orWhereNotIn('contacts.id', DB::table('contact_contact_group')->select('contact_id'));
         });
     }
 }

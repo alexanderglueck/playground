@@ -110,6 +110,8 @@
     "Contact import": "Kontaktimport",
     "Import contacts": "Kontakte importieren",
     "File": "Datei",
-    "Skip header row": "Überschriftenreihe überspringen"
+    "Skip header row": "Überschriftenreihe überspringen",
+    "Contact export": "Kontaktexport",
+    "Export contacts": "Kontakte exportieren"
 }
 

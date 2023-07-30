@@ -36,7 +36,7 @@ A playground where I play with different packages and Docker setups.
   - Search objects (contacts, contact groups, invoices)
   - Search for menu entries (New Invoice, Settings)
 - [ ] Features
-  - [ ] Queued contact export
+  - [x] Queued contact export
   - [x] Queued contact import with preview form 
   - [ ] Contact search
   - [ ] Multi contact modification (from search)
