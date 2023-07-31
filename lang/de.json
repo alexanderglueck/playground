@@ -112,6 +112,12 @@
     "File": "Datei",
     "Skip header row": "Überschriftenreihe überspringen",
     "Contact export": "Kontaktexport",
-    "Export contacts": "Kontakte exportieren"
+    "Export contacts": "Kontakte exportieren",
+    "Notifications": "Benachrichtigungen",
+    "Processes": "Prozesse",
+    "Without column mapping": "Ohne Spaltenzuordnung",
+    "Currently being processed": "In Bearbeitung",
+    "Completed": "Fertig",
+    "Queued": "In Warteschlange"
 }
 

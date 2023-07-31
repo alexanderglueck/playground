@@ -26,6 +26,8 @@ use App\Http\Controllers\InvoiceOptionController;
 use App\Http\Controllers\InvoicePdfController;
 use App\Http\Controllers\NotebookController;
 use App\Http\Controllers\NoteController;
+use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\ProcessesController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ShareableController;
 use App\Http\Controllers\TagController;
@@ -87,6 +89,8 @@ Route::middleware([
         Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
         Route::get('/sharing-center', [ShareableController::class, 'index'])->name('shared.index');
+        Route::get('/processes', [ProcessesController::class, 'index'])->name('processes.index');
+        Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications.index');
 
         Route::resource('contact-groups', ContactGroupController::class)->names([
             'index' => 'contact_groups.index',

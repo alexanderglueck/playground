@@ -13,6 +13,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Storage;
 use Spatie\SimpleExcel\SimpleExcelWriter;
 
 class ProcessContactExport implements ShouldQueue
@@ -43,7 +44,11 @@ class ProcessContactExport implements ShouldQueue
             $headers[] = $field->getNameForLabel();
         }
 
-        $writer = SimpleExcelWriter::create($this->contactExport->file_path)
+        if (Storage::directoryMissing('public')) {
+            Storage::createDirectory('public');
+        }
+
+        $writer = SimpleExcelWriter::create(Storage::path('public/' . $this->contactExport->file_path))
             ->addHeader($headers);
 
         $contacts = $this->contactExport->contactGroup->contacts;

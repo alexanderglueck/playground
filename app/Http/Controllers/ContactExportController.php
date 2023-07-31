@@ -29,7 +29,7 @@ class ContactExportController extends Controller
         $contactExport = new ContactExport();
         $contactExport->started_at = now();
         $contactExport->contact_group_id = $validated['contact_group'];
-        $contactExport->file_path = Storage::path(Str::uuid()->toString() . '.xlsx');
+        $contactExport->file_path = Str::uuid()->toString() . '.xlsx';
         $contactExport->save();
 
         ProcessContactExport::dispatch($request->user(), $contactExport);
