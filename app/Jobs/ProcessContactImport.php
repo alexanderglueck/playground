@@ -6,6 +6,7 @@ use App\Data\ContactData;
 use App\Models\ContactImport;
 use App\Models\Country;
 use App\Models\User;
+use App\Notifications\ContactImportFinished;
 use App\Services\ContactService;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -103,6 +104,8 @@ class ProcessContactImport implements ShouldQueue
 
         $this->contactImport->completed_at = now();
         $this->contactImport->save();
+
+        $this->user->notify(new ContactImportFinished());
     }
 
     private function getMappedValue(array $rowProperties, array $flippedMapping, string $key): ?string

@@ -118,6 +118,9 @@
     "Without column mapping": "Ohne Spaltenzuordnung",
     "Currently being processed": "In Bearbeitung",
     "Completed": "Fertig",
-    "Queued": "In Warteschlange"
+    "Queued": "In Warteschlange",
+    "Contact import finished": "Kontaktimport abgeschlossen",
+    "Contact export finished": "Kontaktexport abgeschlossen",
+    "Download": "Herunterladen"
 }
 

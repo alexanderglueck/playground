@@ -4,6 +4,7 @@ namespace App\Jobs;
 
 use App\Models\ContactExport;
 use App\Models\User;
+use App\Notifications\ContactExportFinished;
 use App\Services\ContactService;
 use App\Services\FieldService;
 use App\Support\LayoutMode;
@@ -64,5 +65,7 @@ class ProcessContactExport implements ShouldQueue
 
         $this->contactExport->completed_at = now();
         $this->contactExport->save();
+
+        $this->user->notify(new ContactExportFinished($this->contactExport->file_path));
     }
 }
