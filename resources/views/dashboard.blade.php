@@ -14,6 +14,15 @@
             <a href="{{ route('contact_export.index') }}">{{ __('Contact export') }}</a><br>
             <a href="{{ route('processes.index') }}">{{ __('Processes') }}</a><br>
             <a href="{{ route('notifications.index') }}">{{ __('Notifications') }}</a><br>
+            <a href="{{ route('view.index') }}">{{ __('Views') }}</a><br>
+        </p>
+
+        <p>
+            <a href="{{ route('subscription.cancel.index') }}">{{ __('Cancel subscription') }}</a><br>
+            <a href="{{ route('subscription.resume.index') }}">{{ __('Resume subscription') }}</a><br>
+            <a href="{{ route('subscription.swap.index') }}">{{ __('Swap subscription') }}</a><br>
+            <a href="{{ route('subscription.card.index') }}">{{ __('Update card') }}</a><br>
+            <a href="{{ route('subscription.invoices.index') }}">{{ __('View invoices') }}</a><br>
         </p>
     </x-panel>
 </x-app-layout>

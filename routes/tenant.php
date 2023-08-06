@@ -30,6 +30,12 @@ use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\ProcessesController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ShareableController;
+use App\Http\Controllers\Subscription\SubscriptionCancelController;
+use App\Http\Controllers\Subscription\SubscriptionCardController;
+use App\Http\Controllers\Subscription\SubscriptionController;
+use App\Http\Controllers\Subscription\SubscriptionInvoiceController;
+use App\Http\Controllers\Subscription\SubscriptionResumeController;
+use App\Http\Controllers\Subscription\SubscriptionSwapController;
 use App\Http\Controllers\TagController;
 use Illuminate\Support\Facades\Route;
 use Stancl\Tenancy\Middleware\InitializeTenancyByDomain;
@@ -55,6 +61,57 @@ Route::middleware([
 ])->group(function () {
 
     Route::middleware(['auth', 'verified'])->group(function () {
+        /**
+         * Subscriptions
+         */
+        Route::group([
+            'prefix' => 'subscription',
+            'namespace' => 'Subscription',
+            'middleware' => ['subscription.owner']
+        ], function () {
+            /**
+             * Cancel
+             */
+            Route::group(['middleware' => 'subscription.notcancelled'], function () {
+                Route::get('/cancel', [SubscriptionCancelController::class, 'index'])->name('subscription.cancel.index');
+                Route::post('/cancel', [SubscriptionCancelController::class, 'store'])->name('subscription.cancel.store');
+            });
+
+            /**
+             * Resume
+             */
+            Route::group(['middleware' => 'subscription.cancelled'], function () {
+                Route::get('/resume', [SubscriptionResumeController::class, 'index'])->name('subscription.resume.index');
+                Route::post('/resume', [SubscriptionResumeController::class, 'store'])->name('subscription.resume.store');
+            });
+
+            /**
+             * Swap
+             */
+            Route::group(['middleware' => 'subscription.notcancelled'], function () {
+                Route::get('/swap', [SubscriptionSwapController::class, 'index'])->name('subscription.swap.index');
+                Route::post('/swap', [SubscriptionSwapController::class, 'store'])->name('subscription.swap.store');
+            });
+
+            /**
+             * Card
+             */
+            Route::group(['middleware' => 'subscription.customer'], function () {
+                Route::get('/card', [SubscriptionCardController::class, 'index'])->name('subscription.card.index');
+                Route::post('/card', [SubscriptionCardController::class, 'store'])->name('subscription.card.store');
+            });
+
+            /**
+             * Invoices
+             */
+            Route::group(['middleware' => 'subscription.customer'], function () {
+                Route::get('/invoices', [SubscriptionInvoiceController::class, 'index'])->name('subscription.invoices.index');
+                Route::get('/invoices/{invoice}', [SubscriptionInvoiceController::class, 'show'])->name('subscription.invoices.show');
+            });
+        });
+    });
+
+    Route::middleware(['auth', 'verified', 'subscription.active'])->group(function () {
         Route::get('/contacts', [ContactController::class, 'index'])->name('contacts.index');
         Route::get('/contacts/create', [ContactController::class, 'create'])->name('contacts.create');
         Route::post('/contacts', [ContactController::class, 'store'])->name('contacts.store');
@@ -84,9 +141,7 @@ Route::middleware([
         Route::get('/events/store', [EventController::class, 'store']);
         Route::get('/events/{event_instance}', [EventController::class, 'show'])->name('events.show');
 
-        Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-        Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-        Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
 
         Route::get('/sharing-center', [ShareableController::class, 'index'])->name('shared.index');
         Route::get('/processes', [ProcessesController::class, 'index'])->name('processes.index');
@@ -141,6 +196,15 @@ Route::middleware([
         Route::post('confirm-password', [ConfirmablePasswordController::class, 'store']);
         Route::put('password', [PasswordController::class, 'update'])->name('password.update');
         Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
+
+        Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+        Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+        Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+        Route::group(['as' => 'subscription.', 'middleware' => ['subscription.inactive', 'subscription.owner']], function () {
+            Route::get('subscription', [SubscriptionController::class, 'index'])->name('index');
+            Route::post('subscription', [SubscriptionController::class, 'store'])->name('store');
+        });
     });
 
     Route::middleware('guest')->group(function () {

@@ -37,5 +37,12 @@
                 {{ $slot }}
             </main>
         </div>
+
+        @if (isset($jsLinks))
+            {{ $jsLinks }}
+        @endif
+        @if (isset($js))
+            {{ $js }}
+        @endif
     </body>
 </html>

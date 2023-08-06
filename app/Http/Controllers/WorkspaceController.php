@@ -74,6 +74,10 @@ class WorkspaceController extends Controller
             event(new Registered($user));
         });
 
+        // Add trial days
+        $tenant->trial_ends_at = now()->addDays(30);
+        $tenant->save();
+
         flash(__('All done! Sign-in to get started'));
 
         return redirect(tenant_route($this->subdomain($workspace), 'dashboard'));
