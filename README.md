@@ -24,6 +24,7 @@ A playground where I play with different packages and Docker setups.
   - [x] Support custom views (e.g. Customer: name, address / Company: company name, address, vat id) 
   - [ ] Make it user manageable
   - [x] Render custom views
+  - [ ] Support custom visibility rules for fields (not everyone is allowed to see all fields)
 - [ ] Extract Docker components to a Composer package
 - [ ] Add invoice system
   - Adhere to [invoice criteria](https://www.wko.at/service/steuern/Erfordernisse-einer-Rechnung.html)
@@ -46,6 +47,7 @@ A playground where I play with different packages and Docker setups.
     - [ ] Task deadline in calendar
   - [ ] Comments
     - [x] Contacts
+    - [ ] Tasks
   - [ ] See who is currently viewing a page (Websockets (soketi))
   - [ ] User groups
     - [x] Permissions on user groups
@@ -69,6 +71,29 @@ A playground where I play with different packages and Docker setups.
 - [x] Notifications for actions (Queued export ready, User accepted an invitation)
 - [ ] Use meilisearch for facet search
 - [ ] Add npm to docker image
+- [ ] Team-User management
+  - [ ] When deleting there must always be one team admin (also relevant for billing)
+  - [ ] When deleting, use soft-delete on user and remove his profile picture (replace with letters from name)
+  - [ ] Remove everything if the admin deletes the team
+- [ ] Billing
+  - [ ] Add stripe support for customer invoices
+  - [ ] Add paddle support for the system (tenants pay using paddle (easier for me))
+  - [ ] Create a subdomain that handles payments of all tenants (payments., maybe directly on main domain)
+  - [x] Only user with create-subscriptions permission can update the subscriptions
+  - [ ] Add check that always at least 1 user has the create-subscriptions permission
+- [ ] Pages
+  - [ ] Add privacy policy
+  - [ ] Add terms of service
+    - [ ] Make revisionable
+    - [ ] Inform users about terms of service changes
+  - [ ] Add pricing pages
+  - [ ] Add API documentation
+  - [ ] Add help pages
+  - [ ] Add faq pages
+- [x] Subscription-plan checks
+- [ ] User impersonation
+  - [ ] In-tenant
+  - [ ] Cross tenant-for admins
 
 ## Setup
 
