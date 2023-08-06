@@ -27,5 +27,20 @@
     @yield('content')
 </main>
 
+<div class="container">
+    <footer class="py-3 my-4">
+        <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+            <li class="nav-item">
+                <a href="{{ route('page.privacy_policy') }}"
+                   class="nav-link px-2 text-body-secondary">{{ __('Privacy Policy') }}</a>
+            </li>
+            <li class="nav-item">
+                <a href="{{ route('page.terms_of_service') }}"
+                   class="nav-link px-2 text-body-secondary">{{ __('Terms of Service') }}</a>
+            </li>
+        </ul>
+        <p class="text-center text-body-secondary">© {{ date('Y') }} {{ config('app.name') }}</p>
+    </footer>
+</div>
 </body>
 </html>

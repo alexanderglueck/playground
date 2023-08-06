@@ -20,7 +20,7 @@
     "Sign up": "Registrieren",
     "Workspace": "Workspace",
     "Your workspace is your subdomain.": "Dein Workspace ist deine Subdomain.",
-    "We'll send you an email to get started.": "Wir senden dir eine E-Mail um zu starten.",
+    "We'll send you an email to get started.": "Wir senden dir eine E-Mail um mit der Einrichtung deines Workspaces zu starten.",
     "Calendar": "Kalender",
     "Contacts": "Kontakte",
     "Log Out": "Abmelden",
@@ -68,7 +68,8 @@
         "zip": "PLZ",
         "city": "Ort",
         "country": "Land",
-        "contact_group": "Kontaktgruppen"
+        "contact_group": "Kontaktgruppen",
+        "legend": "Legende"
     },
     "Create contact": "Kontakt erstellen",
     "Sharing Center": "Freigegebene Inhalte",
@@ -121,6 +122,28 @@
     "Queued": "In Warteschlange",
     "Contact import finished": "Kontaktimport abgeschlossen",
     "Contact export finished": "Kontaktexport abgeschlossen",
-    "Download": "Herunterladen"
+    "Download": "Herunterladen",
+    "Views": "Ansichten",
+    "Create view": "Ansicht erstellen",
+    "Edit view": "Ansicht bearbeiten",
+    "Privacy Policy": "Datenschutzerklärung",
+    "Terms of Service": "Allgemeine Geschäftsbedingungen",
+    "Cancel subscription": "Abonnement kündigen",
+    "Resume subscription": "Abonnement fortsetzen",
+    "Swap subscription": "Abonnement ändern",
+    "View invoices": "Rechnungen ansehen",
+    "Update card": "Kreditkarte aktualisieren",
+    "Date": "Datum",
+    "Amount": "Betrag",
+    "Holder name": "Kreditkarteninhaber",
+    "Credit card data": "Kreditkartendaten",
+    "New subscription plan": "Neues Abonnement",
+    "Subscription": "Abonnement",
+    "Subscribe": "Abonnement abschließen",
+    "Coupon": "Gutschein",
+    "task": "Aufgabe",
+    "contact": "Kontakt",
+    "per month": "pro Monat",
+    "Validation error overview": "Fehlerübersicht"
 }
 

@@ -8,7 +8,7 @@
     <x-panel>
         @foreach($viewTypes::cases() as $viewType)
             <p>
-                <a href="{{ route('custom_fields.show', $viewType) }}">{{ $viewType->value }}</a>
+                <a href="{{ route('custom_fields.show', $viewType) }}">{{ __($viewType->value) }}</a>
             </p>
         @endforeach
     </x-panel>

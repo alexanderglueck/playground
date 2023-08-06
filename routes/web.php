@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Public\WelcomeController;
+use App\Http\Controllers\StaticPageController;
 use App\Http\Controllers\WorkspaceController;
 use Illuminate\Support\Facades\Route;
 use Spatie\Honeypot\ProtectAgainstSpam;
@@ -28,3 +29,6 @@ Route::middleware('signed')->group(function () {
     Route::get('/workspace/create/{workspace}', [WorkspaceController::class, 'create'])->name('workspace.create');
     Route::post('/workspace/create/{workspace}', [WorkspaceController::class, 'store']);
 });
+
+Route::get('/privacy-policy', [StaticPageController::class, 'privacyPolicy'])->name('page.privacy_policy');
+Route::get('/terms-of-service', [StaticPageController::class, 'termsOfService'])->name('page.terms_of_service');
