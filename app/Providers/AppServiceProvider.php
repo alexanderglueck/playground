@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use App\Models\Subscription;
+use App\Models\SubscriptionItem;
+use App\Models\Tenant;
 use Illuminate\Database\Connection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\Relation;
@@ -10,6 +13,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Contracts\Http\Kernel as HttpKernel;
 use Illuminate\Contracts\Console\Kernel as ConsoleKernel;
+use Laravel\Cashier\Cashier;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -18,7 +22,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        Cashier::ignoreMigrations();
     }
 
     /**
@@ -76,5 +80,10 @@ class AppServiceProvider extends ServiceProvider
                 }
             );
         }
+
+        // Cashier setup
+        Cashier::useCustomerModel(Tenant::class);
+        Cashier::useSubscriptionModel(Subscription::class);
+        Cashier::useSubscriptionItemModel(SubscriptionItem::class);
     }
 }

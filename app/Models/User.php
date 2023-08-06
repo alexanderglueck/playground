@@ -83,4 +83,9 @@ class User extends Authenticatable
         }
         return ! ! $role->intersect($this->roles)->count();
     }
+
+    public function canManageSubscription(): bool
+    {
+        return $this->hasPermissionTo('create-subscriptions');
+    }
 }

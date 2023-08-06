@@ -87,7 +87,10 @@ class PermissionsTableSeeder extends Seeder
             'view-comments',
             'create-comments',
             'update-comments',
-            'delete-comments'
+            'delete-comments',
+
+            // Subscriptions
+            'create-subscriptions',
         ];
 
         foreach ($permissions as $permission) {
