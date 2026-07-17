@@ -28,7 +28,7 @@ if (document.querySelector('.editor')) {
 
     watchdog
         .create(document.querySelector('.editor'), {
-            licenseKey: '',
+            licenseKey: 'GPL',
         })
         .catch(handleError);
 

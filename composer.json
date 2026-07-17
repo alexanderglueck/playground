@@ -5,30 +5,30 @@
     "keywords": ["framework", "laravel", "playground", "experiments", "docker"],
     "license": "AGPL-3.0-or-later",
     "require": {
-        "php": "^8.2",
-        "guzzlehttp/guzzle": "^7.2",
+        "php": "^8.4",
+        "guzzlehttp/guzzle": "^7.15",
         "laracasts/flash": "^3.2",
-        "laravel/cashier": "^14.12",
-        "laravel/framework": "^10.0",
-        "laravel/sanctum": "^3.2",
-        "laravel/tinker": "^2.8",
-        "rockett/weasyprint": "^7.0",
+        "laravel/cashier": "^16.6",
+        "laravel/framework": "^13.0",
+        "laravel/sanctum": "^4.0",
+        "laravel/tinker": "^3.0",
+        "rockett/weasyprint": "^11.1",
         "simshaun/recurr": "^5.0",
-        "spatie/laravel-honeypot": "^4.3",
-        "spatie/simple-excel": "^3.2",
-        "stancl/tenancy": "^3.7",
-        "symfony/html-sanitizer": "^6.3"
+        "spatie/laravel-honeypot": "^4.7",
+        "spatie/simple-excel": "^3.10",
+        "stancl/tenancy": "^3.10",
+        "symfony/html-sanitizer": "^7.4|^8.0"
     },
     "require-dev": {
-        "fakerphp/faker": "^1.9.1",
-        "itsgoingd/clockwork": "^5.1",
-        "laravel/breeze": "^1.20",
+        "fakerphp/faker": "^1.24",
+        "itsgoingd/clockwork": "^5.3",
+        "laravel/breeze": "^2.4",
         "laravel/pint": "^1.0",
         "laravel/sail": "^1.18",
-        "mockery/mockery": "^1.4.4",
-        "nunomaduro/collision": "^7.0",
-        "phpunit/phpunit": "^10.0",
-        "spatie/laravel-ignition": "^2.0"
+        "mockery/mockery": "^1.6",
+        "nunomaduro/collision": "^8.6",
+        "phpunit/phpunit": "^12.0",
+        "spatie/laravel-ignition": "^2.12"
     },
     "autoload": {
         "psr-4": {

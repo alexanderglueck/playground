@@ -1,4 +1,4 @@
-FROM php:8.2-fpm-alpine as base
+FROM php:8.5-fpm-alpine AS base
 
 ARG HOST_USER_ID=1000
 ARG HOST_GROUP_ID=1000
@@ -56,14 +56,14 @@ RUN composer install --no-scripts --prefer-dist --no-dev --optimize-autoloader &
     rm -rf /root/.composer
 
 
-FROM base as development
+FROM base AS development
 ENV PHP_OPCACHE_VALIDATE_TIMESTAMPS="1"
 COPY --chown=${HOST_USER_ID}:${HOST_GROUP_ID} . ./
 USER ${HOST_USER_ID}
 CMD ["php-fpm"]
 
 
-FROM base as production
+FROM base AS production
 COPY --chown=${HOST_USER_ID}:${HOST_GROUP_ID} . ./
 USER ${HOST_USER_ID}
 CMD ["php-fpm"]

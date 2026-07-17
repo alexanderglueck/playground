@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use WeasyPrint\Objects\Output;
+use WeasyPrint\WeasyPrintFactory;
 
 class Invoice extends Model implements Flashable, Shareable
 {
@@ -82,7 +83,7 @@ class Invoice extends Model implements Flashable, Shareable
             'invoice' => $this
         ]);
 
-        $service = \WeasyPrint\Service::new(binary: '/python/venv/bin/weasyprint')->prepareSource($source);
+        $service = (new WeasyPrintFactory(['binary' => '/python/venv/bin/weasyprint']))->prepareSource($source);
 
         return $service->build();
     }
