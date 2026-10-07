@@ -1,6 +1,65 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@plugin '@tailwindcss/forms';
+
+/*
+  Templates under resources/views (and PHP under app/) are picked up by
+  Tailwind's automatic source detection. Git-ignored paths are skipped, so
+  vendor views and compiled views have to be registered explicitly.
+*/
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+
+@theme {
+    --font-sans:
+        Figtree, ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
+        'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+/*
+  Tailwind CSS v4 compatibility styles, keeping the v3 defaults:
+
+  - The default border color changed to `currentcolor`.
+  - Placeholders now use the current text color at 50% opacity.
+  - Buttons now use `cursor: default`.
+  - Preflight now resets the padding of every element and restyles the file
+    input button; v3 left table cells, options and that button alone.
+*/
+@layer base {
+    *,
+    ::after,
+    ::before,
+    ::backdrop,
+    ::file-selector-button {
+        border-color: var(--color-gray-200, currentcolor);
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+        color: var(--color-gray-400);
+    }
+
+    button:not(:disabled),
+    [role="button"]:not(:disabled) {
+        cursor: pointer;
+    }
+
+    th,
+    td {
+        padding: 1px;
+    }
+
+    option {
+        padding: revert;
+    }
+
+    ::file-selector-button {
+        padding: revert;
+        border: revert;
+        border-radius: revert;
+        background-color: revert;
+    }
+}
 
 /**
  * @license Copyright (c) 2014-2023, CKSource Holding sp. z o.o. All rights reserved.
